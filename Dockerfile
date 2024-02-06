@@ -1,5 +1,4 @@
 FROM python:3.12
-
 # Install base utilities
 RUN apt-get update \
     && apt-get install -y build-essential \
@@ -26,4 +25,5 @@ RUN ./setup_openvisuspy.sh
 COPY environment.yaml /app
 
 RUN conda env create -f environment.yaml
-RUN conda activate somospie
+RUN conda init
+# RUN conda activate somospie

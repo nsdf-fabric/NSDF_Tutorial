@@ -11,13 +11,17 @@ dependencies:
       - pyspark
       - findspark
       - scikit-learn
+      - scikit-image
       - matplotlib
       - grass-session
-      - bokeh
+      - bokeh==3.1.1
       - xmltodict
       - requests
       - colorcet
       - geopandas
       - tqdm
-      - panel
+      - panel==1.3.6 
+      - pyvista 
+      - vtk 
+      - jupyter
       # - openvisus
