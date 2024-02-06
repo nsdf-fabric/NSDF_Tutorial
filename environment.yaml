@@ -11,7 +11,6 @@ dependencies:
       - pyspark
       - findspark
       - scikit-learn
-      - scikit-image
       - matplotlib
       - grass-session
       - bokeh
@@ -21,7 +20,4 @@ dependencies:
       - geopandas
       - tqdm
       - panel
-      - pyvista 
-      - vtk 
-      - jupyter
       # - openvisus
