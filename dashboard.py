@@ -1,9 +1,9 @@
-remote_dir='https://maritime.sealstorage.io/api/v0/s3/utah/nsdf/somospie/terrain_tennessee/Tennessee_terrain_parameters.idx?access_key=any&secret_key=any&endpoint_url=https://maritime.sealstorage.io/api/v0/s3&cached=arco'
-import os,sys
-sys.path.append('./openvisuspy/src/')
-if __name__.startswith('bokeh'):
+import sys
+remote_dir = "https://maritime.sealstorage.io/api/v0/s3/utah/nsdf/somospie/terrain_tennessee/Tennessee_terrain_parameters.idx?access_key=any&secret_key=any&endpoint_url=https://maritime.sealstorage.io/api/v0/s3&cached=arco"
+
+sys.path.append("./openvisuspy/src/")
+if __name__.startswith("bokeh"):
     from openvisuspy import SetupLogger, IsPanelServe, GetBackend, Slices
-    from openvisuspy.probes import ProbeTool
 
     logger = SetupLogger()
     logger.info(f"GetBackend()={GetBackend()}")
@@ -17,20 +17,42 @@ if __name__.startswith('bokeh'):
         import bokeh
 
         doc = bokeh.io.curdoc()
-        doc.theme = 'light_minimal'
+        doc.theme = "light_minimal"
 
     if False:
-        view = Slice(doc=doc, is_panel=is_panel, )
+        view = Slice(
+            doc=doc,
+            is_panel=is_panel,
+        )
         view.setShowOptions(
-            [ "direction", "offset", "palette", "field", "resolution", "colormapper_type",
-             "palette_range_mode", "palette_range_vmin", "palette_range_vmax"])
+            [
+                "direction",
+                "offset",
+                "palette",
+                "field",
+                "resolution",
+                "colormapper_type",
+                "palette_range_mode",
+                "palette_range_vmin",
+                "palette_range_vmax",
+            ]
+        )
     else:
         view = Slices(doc=doc, is_panel=is_panel)
-        view.setShowOptions([
-            [ "palette", "resolution", "field", "colormapper_type"],
-            [ "direction", "offset","field","colormapper_type", "palette_range_mode", "palette_range_vmin",
-             "palette_range_vmax"]
-        ])
+        view.setShowOptions(
+            [
+                ["palette", "resolution", "field", "colormapper_type"],
+                [
+                    "direction",
+                    "offset",
+                    "field",
+                    "colormapper_type",
+                    "palette_range_mode",
+                    "palette_range_vmin",
+                    "palette_range_vmax",
+                ],
+            ]
+        )
 
     view.setDataset(remote_dir)
 
@@ -38,7 +60,7 @@ if __name__.startswith('bokeh'):
         main_layout = view.getMainLayout()
         use_template = True
         if use_template:
-            template = pn.template.MaterialTemplate(title='SOMOSPIE Integration')
+            template = pn.template.MaterialTemplate(title="SOMOSPIE Integration")
             template.main.append(main_layout)
             template.servable()
         else:
@@ -48,6 +70,6 @@ if __name__.startswith('bokeh'):
 
         main_layout = view.getMainLayout()
         view.setPaletteRangeMode("user")
-        view.setPaletteRange([0,360])
+        view.setPaletteRange([0, 360])
         view.setResolution(21)
         doc.add_root(main_layout)

@@ -1,0 +1,23 @@
+name: somospie
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python
+  - gdal
+  - pip
+  - pip:
+    - pandas
+    - pyspark
+    - findspark
+    - scikit-learn
+    - matplotlib
+    - grass-session
+    - bokeh
+    - xmltodict
+    - requests
+    - colorcet
+    - geopandas
+    - tqdm
+    - panel
+    # - openvisus
