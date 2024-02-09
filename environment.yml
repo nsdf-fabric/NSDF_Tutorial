@@ -3,7 +3,7 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python
+  - python=3.9
   - gdal
   - pip
   - pip:
@@ -20,4 +20,4 @@ dependencies:
       - geopandas
       - tqdm
       - panel
-      # - openvisus
+      - notebook
