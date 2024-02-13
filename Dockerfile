@@ -1,5 +1,4 @@
-FROM python:3.9
-
+FROM python:3.10
 
 # Install base utilities
 RUN apt-get update \
@@ -29,11 +28,20 @@ COPY environment.yml /app/
 RUN conda env create -f environment.yml 
 SHELL ["conda", "run", "-n", "somospie", "/bin/bash", "-c"]
 
+RUN apt-get update && apt-get install -y grass grass-doc
 RUN pip install openvisus
+
+RUN git clone https://github.com/TauferLab/GEOtiled.git
+WORKDIR /app/GEOtiled/geotiled
+RUN pip install -e .
+
+WORKDIR /app
 
 COPY *.ipynb /app
 COPY *.py /app/
 
+EXPOSE 6000
 EXPOSE 5000
+
 RUN conda init
-# ENTRYPOINT ["conda", "run", "-n", "somospie", "jupyter", "notebook", "SOMOSPIE Integration.ipynb", "--allow-root", "--port", "5000"]
+CMD ["conda", "run","-n", "somospie","jupyter", "lab", "--port=5000", "--no-browser", "--ip=0.0.0.0", "--allow-root", "--NotebookApp.token=''","--NotebookApp.password=''"]

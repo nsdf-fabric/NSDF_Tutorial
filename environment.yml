@@ -3,7 +3,7 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python=3.9
+  - python=3.10
   - gdal
   - pip
   - pip:
@@ -20,4 +20,8 @@ dependencies:
       - geopandas
       - tqdm
       - panel
-      - notebook
+      - jupyterlab
+      - grass-session
+      - tifffile
+      - rasterio
+      - imagecodecs
