@@ -45,4 +45,4 @@ EXPOSE 6000 5000
 COPY /files/ /app/files/
 
 RUN conda init
-CMD ["conda", "run","-n", "somospie","jupyter", "lab", "--port=5000", "--no-browser", "--ip=0.0.0.0", "--allow-root", "--NotebookApp.token=''","--NotebookApp.password=''","&&", "python", "-m", "bokeh", "serve", "--port", "6000", "dashboard.py"]
+CMD ["conda", "run","-n", "somospie","jupyter", "lab", "--port=5000", "--no-browser", "--ip=0.0.0.0", "--allow-root", "--NotebookApp.token=''","--NotebookApp.password=''"]
