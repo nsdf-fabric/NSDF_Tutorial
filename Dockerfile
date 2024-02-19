@@ -37,7 +37,7 @@ RUN pip install -e .
 
 WORKDIR /app
 
-COPY *.ipynb /app
+COPY Tutorial.ipynb /app
 COPY *.py /app/
 
 EXPOSE 6000 5000
