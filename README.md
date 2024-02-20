@@ -12,11 +12,6 @@
 <a href="https://www.docker.com"><img alt="Docker" src="https://badges.aleen42.com/src/docker.svg"></a>
 <a href="https://github.com/astral-sh/ruff"><img alt="Ruff" src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json"></a>
 
-
-
-
-
-
 ## Overview
 
 This tutorial uses the following architecture:
@@ -48,7 +43,7 @@ The fastest way to get started is to use docker-compose:
 docker-compose up -d
 ```
 
-It should now be possible to access a jupyter lab interface at:
+It should now be possible to access a Jupyter lab interface at:
 
 ```
 http://localhost:5000/
@@ -98,25 +93,36 @@ To install the dependencies in your local machine use the following command
 
 > :bulb: **Note:** Conda is mandatory in this step, use [this](https://www.anaconda.com/download/) link to install it
 
+```
+conda env create -f environment.yml
+```
+
+Activate the virtual environment:
 
 ```
-conda env create -f environment.yml  
+conda activate somospie
 ```
 
 Install OpenVisus dependencies:
 
 ```
-# use this file to install openvisus in your machine
+# use this file to install openvisus in your local machine
 ./setup_openvisuspy.sh
 ```
 
-Run the jupyter notebook and follow the internal instructions:
+Run the Jupyter Notebook and follow the internal instructions:
 
 ```
 jupyter notebook Tutorial.ipynb
 ```
 
 ### Using a Docker container
+
+To build the docker image in your local machine:
+
+```
+docker build --platform linux/amd64 -f globalcomputinglab/somospie_openvisus .
+```
 
 To pull the image from Dockerhub:
 
@@ -127,10 +133,10 @@ docker pull globalcomputinglab/somospie_openvisus:latest
 To run:
 
 ```
-docker run -d -p 5000:5000 -p 8989:8989 --name tutorial globalcomputinglab/somospie_openvisus
+docker run -d -p 5000:5000 -p 8989:8989 --name tutorial --platform linux/amd64 globalcomputinglab/somospie_openvisus
 ```
 
-Follow this url to run the jupyter notebook `Tutorial.ipynb`:
+Follow this URL to run the Jupyter Notebook `Tutorial.ipynb`:
 
 ```
 http://localhost:5000/
@@ -168,4 +174,3 @@ This project was created by the [NSDF team](https://nationalsciencedatafabric.or
 
 National Science Data Fabric is funded by the National Science Foundation (NSF) under grant number 2138811.
 Any opinions, findings, conclusions, or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
-

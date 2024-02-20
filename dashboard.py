@@ -1,33 +1,27 @@
 import sys
 import argparse
-from openvisuspy import SetupLogger, IsPanelServe, GetBackend, Slices, Slice
-import panel as pn
-import bokeh
-
+import os
 
 sys.path.append("./openvisuspy/src/")
 if __name__.startswith("bokeh"):
+    from openvisuspy import SetupLogger, IsPanelServe, GetBackend, Slices
+
     logger = SetupLogger()
     logger.info(f"GetBackend()={GetBackend()}")
-    parser = argparse.ArgumentParser(
-        prog="ProgramName",
-        description="What the program does",
-        epilog="Text at the bottom of help",
-    )
-    parser.add_argument(
-        "-r", "--remote", default=True, action=argparse.BooleanOptionalAction
-    )
-    args = parser.parse_args()
 
-    if args.remote:
+    if os.environ.get("DATA") == "remote":
         remote_dir = "https://maritime.sealstorage.io/api/v0/s3/utah/nsdf/somospie/terrain_tennessee/Tennessee_terrain_parameters.idx?access_key=any&secret_key=any&endpoint_url=https://maritime.sealstorage.io/api/v0/s3&cached=arco"
     else:
         remote_dir = "idx_data/Tennessee_terrain_parameters.idx"
 
     is_panel = IsPanelServe()
     if is_panel:
+        import panel as pn
+
         doc = None
     else:
+        import bokeh
+
         doc = bokeh.io.curdoc()
         doc.theme = "light_minimal"
 

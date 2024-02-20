@@ -40,9 +40,10 @@ WORKDIR /app
 COPY Tutorial.ipynb /app
 COPY *.py /app/
 
-EXPOSE 6000 5000
+EXPOSE 8989 5000
 
 COPY /files/ /app/files/
+COPY /idx_data/ /app/idx_data/
 
 RUN conda init
 CMD ["conda", "run","-n", "somospie","jupyter", "lab", "--port=5000", "--no-browser", "--ip=0.0.0.0", "--allow-root", "--NotebookApp.token=''","--NotebookApp.password=''"]
