@@ -55,7 +55,7 @@ There are two ways to install and run the tutorial: i) [Using your local machine
 
 ### Using your local machine
 
-[Conda](https://www.anaconda.com/download/) is used to control all the dependencies in this project, the file `environment.yml` contains the list of required versions:
+[Conda](https://www.anaconda.com/download/) is used to control all the dependencies in this project; the file `environment.yml` contains the list of required versions:
 
 ```
 # environment.yml
@@ -89,7 +89,7 @@ dependencies:
       - imagecodecs
 ```
 
-To install the dependencies in your local machine use the following command
+To install the dependencies in your local machine, use the following command:
 
 > :bulb: **Note:** Conda is mandatory in this step, use [this](https://www.anaconda.com/download/) link to install it
 
