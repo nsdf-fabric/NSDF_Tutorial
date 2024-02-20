@@ -40,13 +40,28 @@ This tutorial uses the following architecture:
 The fastest way to get started is to use docker-compose:
 
 ```
+# Clone the repository
+git clone https://github.com/nsdf-fabric/Openvisus_Tutorial.git
+
+# Change directory 
+cd Openvisus_Tutorial
+
+# Start docker compose
 docker-compose up -d
 ```
 
 Then access the Jupyter lab interface at:
 
 ```
-http://localhost:5000/
+# Access to Jupyter Lab (Tutorial.ipynb)
+http://localhost:5000/lab/tree/Tutorial.ipynb
+
+```
+Stop the docker container
+```
+# Stop the docker container
+docker-compose down
+
 ```
 
 ## Installation
