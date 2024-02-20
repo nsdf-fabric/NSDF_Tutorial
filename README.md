@@ -1,4 +1,4 @@
-# OpenVisus Tutorial: SOMOSPIE Terrain Parameters
+# **OpenVisus Tutorial: Using NSDF for an Earth Science Dataset**
 
 <p align="center">
     <img src="https://nationalsciencedatafabric.org/assets/images/logo.png" width="350">
