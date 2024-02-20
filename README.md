@@ -43,7 +43,7 @@ The fastest way to get started is to use docker-compose:
 docker-compose up -d
 ```
 
-It should now be possible to access a Jupyter lab interface at:
+Then access the Jupyter lab interface at:
 
 ```
 http://localhost:5000/
