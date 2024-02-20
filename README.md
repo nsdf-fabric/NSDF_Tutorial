@@ -161,7 +161,7 @@ Resources:
 
 ## Copyright and License
 
-Copyright (c) 2023, Global Computing Lab
+Copyright (c) 2024, Global Computing Lab
 
 Catalog Comparison Tool is distributed under terms of the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) with LLVM Exceptions.
 See [LICENSE](LICENSE) for more details.
