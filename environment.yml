@@ -13,15 +13,24 @@ dependencies:
       - scikit-learn
       - matplotlib
       - grass-session
-      - bokeh
       - xmltodict
       - requests
       - colorcet
       - geopandas
       - tqdm
-      - panel
       - jupyterlab
       - grass-session
       - tifffile
       - rasterio
       - imagecodecs
+      - numpy 
+      - boto3  
+      - param==2.0.2 
+      - bokeh==3.3.4 
+      - ipywidgets-bokeh==1.5.0 
+      - panel==1.3.8 
+      - OpenVisusNoGui==2.2.128 
+      - ipykernel==6.29.2 
+      - ipywidgets==8.1.2 
+      - matplotlib==3.8.2 
+      - ipywidgets-bokeh==1.5.0
