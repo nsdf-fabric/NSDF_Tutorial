@@ -60,7 +60,7 @@ Then access the Jupyter lab interface at:
 
 ```
 # Access to Jupyter Lab (Tutorial.ipynb)
-http://localhost:5000/lab/tree/Tutorial.ipynb
+http://127.0.0.1:5000/lab/tree/Tutorial.ipynb
 ```
 Stop the docker container
 ```
