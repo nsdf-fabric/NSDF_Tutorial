@@ -175,7 +175,7 @@ docker build --platform linux/amd64 -t globalcomputinglab/somospie_openvisus .
 To pull the image from Dockerhub:
 
 ```
-docker pull globalcomputinglab/somospie_openvisus:latest
+docker pull --platform linux/amd64 globalcomputinglab/somospie_openvisus:latest
 ```
 
 To run:
