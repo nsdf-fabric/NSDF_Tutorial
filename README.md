@@ -42,7 +42,7 @@ To execute this tutorial, you must have Git and Docker Desktop on your computer.
 
 ## Docker-compose Execution
 
-There is a Docker container [`globalcomputinglab/somospie_openvisus`](https://hub.docker.com/repository/docker/globalcomputinglab/somospie_openvisus/general) with all the software stack required to facilitate the execution of this tutorial. After installing Docker Desktop as listed in the [Prerequisites](#prerequisites), **please open the application on your computer.**   
+There is a Docker container [`globalcomputinglab/somospie_openvisus`](https://hub.docker.com/repository/docker/globalcomputinglab/somospie_openvisus/general) with all the software stack required to facilitate the execution of this tutorial. After installing Docker Desktop as listed in the [Prerequisites](#prerequisites), **please open the Docker Desktop application on your computer.**   
 
 Open your terminal and follow the next instructions to execute the tutorial using the Docker container. 
 ```
