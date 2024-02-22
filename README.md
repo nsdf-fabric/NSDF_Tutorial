@@ -169,7 +169,7 @@ jupyter notebook Tutorial.ipynb
 To build the docker image in your local machine:
 
 ```
-docker build --platform linux/amd64 -f globalcomputinglab/somospie_openvisus .
+docker build --platform linux/amd64 -t globalcomputinglab/somospie_openvisus .
 ```
 
 To pull the image from Dockerhub:
