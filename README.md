@@ -22,18 +22,19 @@ This tutorial uses the following architecture:
 
 ---
 
-<details>
-  <summary>Click me</summary>
-  
-  ### Table of content
-  1. [Quickstart](#quickstart)
-  2. [Installation](#installation)
-  3. [Community](#community)
-  4. [Related Publications](#related-publications)
-  5. [Copyright and License](#copyright-and-license)
-  6. [Authors](#authors)
-  7. [Acknowledgments](#acknowledgments)
-</details>
+### Table of content
+  1. [Prerequisites](#prerequisites)
+  2. [Quickstart](#quickstart)
+  3. [Installation](#installation)
+  4. [Community](#community)
+  5. [Related Publications](#related-publications)
+  6. [Copyright and License](#copyright-and-license)
+  7. [Authors](#authors)
+  8. [Acknowledgments](#acknowledgments)
+
+## Prerequisites
+
+To execute this tutorial, you must have **Docker Desktop** on your computer. Follow the instructions [here](https://docs.docker.com/engine/install/) and depending on your OS (i.e., Linux, Windows, or Mac) select the installation method. 
 
 ## Quickstart
 
@@ -61,7 +62,6 @@ Stop the docker container
 ```
 # Stop the docker container
 docker-compose down
-
 ```
 
 ## Installation
