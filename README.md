@@ -37,9 +37,38 @@ This tutorial follows the next architecture:
 ## Prerequisites
 
 To execute this tutorial, you must have Git and Docker Desktop on your computer.  
-* **Git**: Follow the instructions [here](https://github.com/git-guides/install-git) and depending on your OS (i.e., Linux, Windows, or Mac) select the installation method. 
-* **Docker Desktop**: Follow the instructions [here](https://docs.docker.com/engine/install/) and depending on your OS (i.e., Linux, Windows, or Mac) select the installation method. 
+* **Install Git**: Follow the instructions [here](https://github.com/git-guides/install-git) and depending on your OS (i.e., Linux, Windows, or Mac) select the installation method. 
+* **Install Docker Desktop**: Follow the instructions [here](https://docs.docker.com/engine/install/) and depending on your OS (i.e., Linux, Windows, or Mac) select the installation method.
 
+Verify your installation by opening the terminal on your computer and typing the next commands. 
+> :bulb: **Note:** For Windows we recommend using the [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/overview?view=powershell-7.4) terminal. 
+* Verification of Github
+```
+# Check the Git version
+git --version
+```
+Expected Output: `git version 3.12.0` 
+
+* Verification of Docker Desktop
+```
+# Check the Docker information installation 
+docker info
+```
+Expected Output: 
+> Note: The numbers might change depending on your installation 
+```
+Client:
+ Version:    24.0.5
+ Context:    default
+ Debug Mode: false
+
+Server:
+ Containers: 120
+  Running: 0
+  Paused: 0
+  Stopped: 120
+ Images: 48
+```
 ## Docker-compose Execution
 
 There is a Docker container [`globalcomputinglab/somospie_openvisus`](https://hub.docker.com/repository/docker/globalcomputinglab/somospie_openvisus/general) with all the software stack required to facilitate the execution of this tutorial. After installing Docker Desktop as listed in the [Prerequisites](#prerequisites), **please open the Docker Desktop application on your computer.**   
