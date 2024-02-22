@@ -73,7 +73,7 @@ Server:
 
 There is a Docker container [`globalcomputinglab/somospie_openvisus`](https://hub.docker.com/repository/docker/globalcomputinglab/somospie_openvisus/general) with all the software stack required to facilitate the execution of this tutorial. After installing Docker Desktop as listed in the [Prerequisites](#prerequisites), **please open the Docker Desktop application on your computer.**   
 
-Open your terminal and follow the next instructions to execute the tutorial using the Docker container. 
+**Open your terminal** and follow the next instructions to execute the tutorial using the Docker container. 
 ```
 # Clone the repository
 git clone https://github.com/nsdf-fabric/Openvisus_Tutorial.git
@@ -85,13 +85,13 @@ cd Openvisus_Tutorial
 docker-compose up -d
 ```
 
-Then access the Jupyter lab interface at:
+Then **open your preferred browser (i.e., Google Chrome, Firefox, Safari)** and paste the next URL to access Jupyter Lab (Tutorial.ipynb)
 
 ```
 # Access to Jupyter Lab (Tutorial.ipynb)
 http://127.0.0.1:5000/lab/tree/Tutorial.ipynb
 ```
-Stop the docker container
+To stop the docker container, please, type on your terminal the next command. 
 ```
 # Stop the docker container
 docker-compose down
