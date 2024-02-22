@@ -3,7 +3,7 @@
 (box)
 0 6142 0 1201
 (physic_box)
-0 6143 0 1202
+-90.3092295062089 -81.64695281160846 34.302222511744404 37.325468259540294
 (fields)
 elevation float32 default_compression(zip) default_layout() default_value(0) min(0) max(0) 
 + hillshading uint8 default_compression(zip) default_layout() default_value(0) min(0) max(0) 
