@@ -49,13 +49,13 @@ git --version
 ```
 Expected Output: `git version 3.12.0` 
 
-* Verification of Docker Desktop
+* Verification of Docker Desktop: Before running any Docker commands, please, open the Docker Desktop application. 
 ```
 # Check the Docker information installation 
 docker info
 ```
 Expected Output: 
-> Note: The numbers might change depending on your installation 
+> Note: The numbers might change depending on your installation and more information can be displayed.
 ```
 Client:
  Version:    24.0.5
