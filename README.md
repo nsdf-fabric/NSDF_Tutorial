@@ -91,7 +91,7 @@ Then **open your preferred browser (i.e., Google Chrome, Firefox, Safari)** and 
 # Access to Jupyter Lab (Tutorial.ipynb)
 http://127.0.0.1:5000/lab/tree/Tutorial.ipynb
 ```
-To stop the docker container, please, type on your terminal the next command. 
+Once you have completed the execution of the tutorial, you need to stop the docker container. **Open your terminal** and enter the next command. 
 ```
 # Stop the docker container
 docker-compose down
