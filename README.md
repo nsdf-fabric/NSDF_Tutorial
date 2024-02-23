@@ -220,5 +220,5 @@ This project was created by the [NSDF team](https://nationalsciencedatafabric.or
 
 ## Acknowledgments
 
-National Science Data Fabric is funded by the National Science Foundation (NSF) under grant number 2138811.
-Any opinions, findings, conclusions, or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
+National Science Data Fabric is funded by the National Science Foundation (NSF) under grant number 2138811. Any opinions, findings, conclusions, or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.  
+This software was developed in support of the National Science Foundation through the awards 2138811, 2103845, 2334945, and 2331152; and the Access program through the NSF grant \#2138296.
