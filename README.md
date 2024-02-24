@@ -1,7 +1,7 @@
 # **NSDF Tutorial: Using NSDF for End-to-End Analysis of Scientific Data**
 
 <p align="center">
-    <img src="https://nationalsciencedatafabric.org/assets/images/logo.png" width="350">
+    <img src="files/docs/Logos.png" width="450">
 </p>
 
 <p align="center">
@@ -231,7 +231,3 @@ The authors of this tutorial would like to express their gratitude to:
 * Vargas Lab led by Dr. Rodrigo Vargas [link](https://www.udel.edu/academics/colleges/canr/departments/plant-and-soil-sciences/faculty-staff/rodrigo-vargas/)
 
 Any opinions, findings, conclusions, or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.  
-
-<p align="center">
-    <img src="files/docs/Logos.png" width="450">
-</p>
