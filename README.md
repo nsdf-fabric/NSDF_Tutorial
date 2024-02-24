@@ -19,7 +19,7 @@ This tutorial demonstrates the power of [OpenVisus](https://github.com/sci-visus
 This tutorial follows the next architecture:
 
 <p align="center">
-    <img src="files/docs/Openvisus-somospie.png" width="800">
+    <img src="files/docs/workflow-diagram.png" width="800">
 </p>
 
 ---
@@ -205,7 +205,11 @@ Resources:
 
 ## Related Publications
 
-- Camila Roa, Paula Olaya, Ricardo Llamas, Rodrigo Vargas, and Michela Taufer. 2023. GEOtiled: A Scalable Workflow for Generating Large Datasets of High-Resolution Terrain Parameters. In Proceedings of the 32nd International Symposium on High-Performance Parallel and Distributed Computing (HPDC '23). Association for Computing Machinery, New York, NY, USA, 311–312. https://doi.org/10.1145/3588195.3595941
+[1] Roa, C., Olaya, P., Llamas, R., Vargas, R., Taufer, M. GEOtiled: A Scalable Workflow for Generating Large Datasets of High-Resolution Terrain Parameters. Proceedings of the 32nd International Symposium on High-Performance Parallel and Distributed Computing (2023). [link](https://dl.acm.org/doi/abs/10.1145/3588195.3595941)
+
+[2] Olaya, Paula and Luettgau, Jakob and Roa, Camila and Llamas, Richardo and Vargas, Rodrigo and Wen, Sophia and Chung, I-Hsin and Seelam, Seetharami and Park, Yoonho and Lofstead, Jay and others Enabling Scalability in the Cloud for Scientific Workflows: An Earth Science Use Case. IEEE International Conference on Cloud Computing (2023). [link](https://research.ibm.com/publications/enabling-scalability-in-the-cloud-for-scientific-workflows-an-earth-science-use-case)
+
+[3] D. Rorabaugh, M. Guevara, R. Llamas, J. Kitson, R. Vargas, and M. Taufer. SOMOSPIE: A modular SOil MOisture SPatial Inference Engine based on data-driven decisions. In Proceedings of the 2019 15th International Conference on eScience (eScience) (2019). [link](https://ieeexplore.ieee.org/document/9041768)
 
 ## Copyright and License
 
@@ -216,9 +220,18 @@ See [LICENSE](LICENSE) for more details.
 
 ## Authors
 
-This project was created by the [NSDF team](https://nationalsciencedatafabric.org/contributors.html). To reach out email us at [info@nationalsciencedatafabric.org](email:info@nationalsciencedatafabric.org)
+This project was created by the [NSDF team](https://nationalsciencedatafabric.org/contributors.html) and the SOMOSPIE team. To reach out email us at [info@nationalsciencedatafabric.org](email:info@nationalsciencedatafabric.org) and Dr. Michela Taufer [mtaufer@utk.edu](email:mtaufer@utk.edu). 
 
 ## Acknowledgments
+The authors of this tutorial would like to express their gratitude to:
 
-National Science Data Fabric is funded by the National Science Foundation (NSF) under grant number 2138811. Any opinions, findings, conclusions, or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.  
-This software was developed in support of the National Science Foundation through the awards 2138811, 2103845, 2334945, and 2331152; and the Access program through the NSF grant \#2138296.
+* NSF through the awards 2138811, 2103845, 2334945, 2138296, and 2331152.
+* The Dataverse team [link](https://dataverse.org/about)
+* The Seal Storage team [link](https://www.sealstorage.io/home/#team)
+* Vargas Lab led by Dr. Rodrigo Vargas [link](https://www.udel.edu/academics/colleges/canr/departments/plant-and-soil-sciences/faculty-staff/rodrigo-vargas/)
+
+Any opinions, findings, conclusions, or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.  
+
+<p align="center">
+    <img src="files/docs/Logos.png" width="450">
+</p>
