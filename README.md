@@ -213,7 +213,7 @@ NSDF Resources:
 SOMOSPIE Resources:
 - **GitHub:** [SOMOSPIE software](https://github.com/TauferLab/SOMOSPIE)
 - **Webpage:** [SOMOSPIE overview](https://globalcomputing.group/somospie)
-- **Questions:** [Michela Taufer](taufer@utk.edu) and [Rodrigo Vargas](vargas@udel.edu)
+- **Questions:** Michela Taufer [mtaufer@utk.edu](email:mtaufer@utk.edu). 
 
 ## Related Publications
 
