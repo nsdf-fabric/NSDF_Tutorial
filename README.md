@@ -46,18 +46,25 @@ This tutorial follows the steps in Figure 1.
 
 ## Prerequisites
 
-To execute this tutorial, you must have Git and Docker Desktop on your computer.  
-* **Install Git**: Follow the instructions [here](https://github.com/git-guides/install-git) and depending on your OS (i.e., Linux, Windows, or Mac) select the installation method. 
-* **Install Docker Desktop**: Follow the instructions [here](https://docs.docker.com/engine/install/) and depending on your OS (i.e., Linux, Windows, or Mac) select the installation method.
+Before starting this tutorial, ensure you have installed Git and Docker Desktop on your computer.
 
-Verify your installation by opening the terminal on your computer and typing the next commands. 
-> :bulb: **Note:** For Windows we recommend using the [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/overview?view=powershell-7.4) terminal. 
+* **To install Git**: Follow the [installation instructions](https://github.com/git-guides/install-git) for your operating system (Linux, Windows, or Mac).
+* **To install Docker Desktop**: Follow the [installation instructions](https://docs.docker.com/engine/install/) for your operating system (Linux, Windows, or Mac).
+
+After installation, confirm that both tools are correctly set up by executing the following commands in your terminal.
+
+> :bulb: **Note:** For Windows users, ee recommend using the [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/overview?view=powershell-7.4) terminal for these verifications.
+
 * Verification of Github
 ```
 # Check the Git version
 git --version
 ```
-Expected Output: `git version 3.12.0` 
+Expected Output: 
+```
+git version 3.12.0` 
+```
+
 
 * Verification of Docker Desktop: Before running any Docker commands, please, open the Docker Desktop application. 
 ```
