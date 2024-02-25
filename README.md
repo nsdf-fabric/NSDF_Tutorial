@@ -202,16 +202,18 @@ http://localhost:5000/
 
 ## Community
 
-OpenVisus is an open-source project. Questions, discussion, and
-contributions are welcome. Contributions can be anything from new
-packages to bug fixes, documentation, or even new core features.
+NSDF and SOMOSPIE are open-source projects. Questions, discussion, and contributions are welcome. Contributions can be anything from new packages to bug fixes, documentation, or even new core features.
 
-Resources:
-
+NSDF Resources:
 - **Slack workspace**: [nsdf-workspace](https://nsdf-workspace.slack.com/).
 - **Github Discussions**: [issues](https://github.com/nsdf-fabric/catalog-comparison-tool/issues): not just for discussions, also Q&A.
 - **Mailing list**: [https://groups.google.com/g/nsdf](https://groups.google.com/g/nsdf) - nsdf@googlegroups.com
 - **Twitter**: [@FabricNsdf](https://twitter.com/FabricNsdf).
+
+SOMOSPIE Resources:
+- **GitHub:** [SOMOSPIE software](https://github.com/TauferLab/SOMOSPIE)
+- **Webpage:** [SOMOSPIE overview](https://globalcomputing.group/somospie)
+- **Questions:** [Michela Taufer](taufer@utk.edu) and [Rodrigo Vargas](vargas@udel.edu)
 
 ## Related Publications
 
