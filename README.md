@@ -111,6 +111,32 @@ docker-compose down
 
 There are two ways to install and run the tutorial: i) [Using your local machine](#using-your-local-machine) and ii) [Using a docker container](#using-a-docker-container)
 
+### Using a Docker container
+
+To build the docker image in your local machine:
+
+```
+docker build --platform linux/amd64 -t globalcomputinglab/somospie_openvisus .
+```
+
+To pull the image from Dockerhub:
+
+```
+docker pull --platform linux/amd64 globalcomputinglab/somospie_openvisus:latest
+```
+
+To run:
+
+```
+docker run -d -p 5000:5000 -p 8989:8989 --name tutorial --platform linux/amd64 globalcomputinglab/somospie_openvisus
+```
+
+Follow this URL to run the Jupyter Notebook `Tutorial.ipynb`:
+
+```
+http://localhost:5000/
+```
+
 ### Using your local machine
 
 [Conda](https://www.anaconda.com/download/) is used to control all the dependencies in this project; the file `environment.yml` contains the list of required versions:
@@ -172,32 +198,6 @@ Run the Jupyter Notebook and follow the internal instructions:
 
 ```
 jupyter notebook Tutorial.ipynb
-```
-
-### Using a Docker container
-
-To build the docker image in your local machine:
-
-```
-docker build --platform linux/amd64 -t globalcomputinglab/somospie_openvisus .
-```
-
-To pull the image from Dockerhub:
-
-```
-docker pull --platform linux/amd64 globalcomputinglab/somospie_openvisus:latest
-```
-
-To run:
-
-```
-docker run -d -p 5000:5000 -p 8989:8989 --name tutorial --platform linux/amd64 globalcomputinglab/somospie_openvisus
-```
-
-Follow this URL to run the Jupyter Notebook `Tutorial.ipynb`:
-
-```
-http://localhost:5000/
 ```
 
 ## Community
