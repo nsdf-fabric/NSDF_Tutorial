@@ -24,12 +24,12 @@ Upload and download intermediary data to/from public storage solutions such as D
 
 Utilize the NSDF dashboard for sophisticated data visualization and analysis, including features like zooming in for detailed examination, selecting specific subregions for cropping, and exporting these areas in a format compatible with Python.
 
-
-
-This tutorial follows the next architecture:
+This tutorial follows the steps in Figure 1.
 
 <p align="center">
     <img src="files/docs/workflow-diagram.png" width="800">
+    <br>
+    <em>Figure: Workflow diagram illustrating the tutorial's process of data collection, transformation, analysis, and storage using the SOMOSPIE engine and NSDF services.</em>
 </p>
 
 ---
