@@ -55,24 +55,22 @@ After installation, confirm that both tools are correctly set up by executing th
 
 > :bulb: **Note:** For Windows users, ee recommend using the [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/overview?view=powershell-7.4) terminal for these verifications.
 
-* Verification of Github
+* To verify the GitHub installation:
 ```
 # Check the Git version
 git --version
 ```
-Expected Output: 
+Expected output: 
 ```
 git version 3.12.0` 
 ```
 
-
-* Verification of Docker Desktop: Before running any Docker commands, please, open the Docker Desktop application. 
+* To verify Docker Desktop installation: Make sure you open the Docker Desktop application before running Docker commands.
 ```
-# Check the Docker information installation 
+# Check the Docker installation information
 docker info
 ```
-Expected Output: 
-> Note: The numbers might change depending on your installation and more information can be displayed.
+Expected output:
 ```
 Client:
  Version:    24.0.5
@@ -86,6 +84,8 @@ Server:
   Stopped: 120
  Images: 48
 ```
+> :bulb: **Note**: The specific numbers in the output might vary based on your installation details and additional information may also appear.
+
 ## Docker-compose Execution
 
 There is a Docker container [`globalcomputinglab/somospie_openvisus`](https://hub.docker.com/repository/docker/globalcomputinglab/somospie_openvisus/general) with all the software stack required to facilitate the execution of this tutorial. After installing Docker Desktop as listed in the [Prerequisites](#prerequisites), **please open the Docker Desktop application on your computer.**   
