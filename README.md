@@ -86,31 +86,31 @@ Server:
 ```
 > :bulb: **Note**: The specific numbers in the output might vary based on your installation details and additional information may also appear.
 
-## Docker-compose Execution
+## Running the Tutorial with Docker
 
-There is a Docker container [`globalcomputinglab/somospie_openvisus`](https://hub.docker.com/repository/docker/globalcomputinglab/somospie_openvisus/general) with all the software stack required to facilitate the execution of this tutorial. After installing Docker Desktop as listed in the [Prerequisites](#prerequisites), **please open the Docker Desktop application on your computer.**   
+To run this tutorial, we have prepared a Docker container named [`globalcomputinglab/somospie_openvisus`](https://hub.docker.com/repository/docker/globalcomputinglab/somospie_openvisus/general) that includes all necessary software. Ensure you have installed Docker Desktop as outlined in the [Prerequisites](#prerequisites) and have it open on your computer.
 
-**Open your terminal** and follow the next instructions to execute the tutorial using the Docker container. 
+Follow these steps in your terminal to use the Docker container for the tutorial:
 ```
-# Clone the repository
+# Clone the tutorial repository:
 git clone https://github.com/nsdf-fabric/Openvisus_Tutorial.git
 
-# Change directory 
+# Navigate to the tutorial directory:
 cd Openvisus_Tutorial
 
-# Start docker compose
+# Launch the Docker environment:
 docker-compose up -d
 ```
 
-Then **open your preferred browser (i.e., Google Chrome, Firefox, Safari)** and paste the next URL to access Jupyter Lab (Tutorial.ipynb)
-
+After executing the above command, open your preferred web browser (such as Google Chrome, Firefox, or Safari) and enter the following URL to access Jupyter Lab and the tutorial notebook (Tutorial.ipynb):
 ```
 # Access to Jupyter Lab (Tutorial.ipynb)
 http://127.0.0.1:5000/lab/tree/Tutorial.ipynb
 ```
-Once you have completed the execution of the tutorial, you need to stop the docker container. **Open your terminal** and enter the next command. 
+
+When you have finished the tutorial, ensure to stop the Docker container to free up resources. Do this by entering the following command in your terminal:
 ```
-# Stop the docker container
+# Stop the Docker container 
 docker-compose down
 ```
 
