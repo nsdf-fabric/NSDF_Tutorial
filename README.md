@@ -22,7 +22,7 @@ Construct a modular workflow that combines your application module with NSDF ser
 
 Upload and download intermediary data to/from public storage solutions such as Dataverse, and to/from private storage options like Seal Storage.
 
-Utilize the NSDF dashboard for sophisticated data visualization and analysis, including features like zooming in for detailed examination, selecting specific subregions for cropping, and exporting these areas in a format compatible with Python.
+Deploy the NSDF dashboard for sophisticated data visualization and analysis, including features like zooming in for detailed examination, selecting specific subregions for cropping, and exporting these areas in a format compatible with Python.
 
 This tutorial follows the steps in Figure 1.
 
