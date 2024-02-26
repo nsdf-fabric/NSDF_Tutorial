@@ -46,10 +46,12 @@ This tutorial follows the steps in Figure 1.
 
 ## Prerequisites
 
+> :bulb: **Note:** To follow this tutorial you must have a computer with minimum **8 GB of RAM** and **5 GB of free disk** 
+
 Before starting this tutorial, ensure you have installed Git and Docker Desktop on your computer.
 
 * **To install Git**: Follow the [installation instructions](https://github.com/git-guides/install-git) for your operating system (Linux, Windows, or Mac).
-* **To install Docker Desktop**: Follow the [installation instructions](https://docs.docker.com/engine/install/) for your operating system (Linux, Windows, or Mac).
+* **To install Docker Desktop**: Follow the [installation instructions](https://docs.docker.com/engine/install/) for your operating system (Linux, Windows, or Mac). ***Be sure you are running the most recent version of Docker! Previous versions to 4.15.10 may not work.***
 
 After installation, confirm that both tools are correctly set up by executing the following commands in your terminal.
 
@@ -84,13 +86,15 @@ Server:
   Stopped: 120
  Images: 48
 ```
-> :bulb: **Note**: The specific numbers in the output might vary based on your installation details and additional information may also appear.
+> :bulb: **Note:** The specific numbers in the output might vary based on your installation details and additional information may also appear.
 
 ## Running the Tutorial with Docker
 
-To run this tutorial, we have prepared a Docker container named [`globalcomputinglab/somospie_openvisus`](https://hub.docker.com/repository/docker/globalcomputinglab/somospie_openvisus/general) that includes all necessary software. Ensure you have installed Docker Desktop as outlined in the [Prerequisites](#prerequisites) and have it open on your computer.
+To run this tutorial, we have prepared a Docker container named [`globalcomputinglab/somospie_openvisus`](https://hub.docker.com/repository/docker/globalcomputinglab/somospie_openvisus/general) that includes all necessary software. Ensure you have installed Docker Desktop as outlined in the [Prerequisites](#prerequisites).
 
-Follow these steps in your terminal to use the Docker container for the tutorial:
+**:bulb: Note: Before following the next steps, make sure to open the Docker Desktop Application.**
+
+Now open the terminal and follow the next steps to deploy the tutorial in the Docker container:
 ```
 # Clone the tutorial repository:
 git clone https://github.com/nsdf-fabric/Openvisus_Tutorial.git
@@ -215,12 +219,16 @@ NSDF Resources:
 - **Slack workspace**: [nsdf-workspace](https://nsdf-workspace.slack.com/).
 - **Github Discussions**: [issues](https://github.com/nsdf-fabric/catalog-comparison-tool/issues): Discussions and Q&A.
 - **Mailing list**: [https://groups.google.com/g/nsdf](https://groups.google.com/g/nsdf) - nsdf@googlegroups.com
-- **Twitter**: [@FabricNsdf](https://twitter.com/FabricNsdf).
+- **Twitter**: [@FabricNsdf](https://twitter.com/FabricNsdf)
+
+OpenVisus Resources:
+- **Github:** [Open Source distribution of the ViSUS capabilities](https://github.com/sci-visus/openvisus)
+- **Webpage:** [VISUS - High performance Big Data Analysis and Visualization Solutions](https://visus.org/)
 
 SOMOSPIE Resources:
 - **GitHub:** [SOMOSPIE software](https://github.com/TauferLab/SOMOSPIE)
 - **Webpage:** [SOMOSPIE overview](https://globalcomputing.group/somospie)
-- **Questions:** Michela Taufer [mtaufer@utk.edu](email:mtaufer@utk.edu). 
+- **Questions:** Michela Taufer [mtaufer@utk.edu](email:mtaufer@utk.edu) 
 
 ## Related Publications
 
@@ -229,6 +237,12 @@ SOMOSPIE Resources:
 [2] Olaya, Paula and Luettgau, Jakob and Roa, Camila and Llamas, Richardo and Vargas, Rodrigo and Wen, Sophia and Chung, I-Hsin and Seelam, Seetharami and Park, Yoonho and Lofstead, Jay and others Enabling Scalability in the Cloud for Scientific Workflows: An Earth Science Use Case. IEEE International Conference on Cloud Computing (2023). [link](https://research.ibm.com/publications/enabling-scalability-in-the-cloud-for-scientific-workflows-an-earth-science-use-case)
 
 [3] D. Rorabaugh, M. Guevara, R. Llamas, J. Kitson, R. Vargas, and M. Taufer. SOMOSPIE: A modular SOil MOisture SPatial Inference Engine based on data-driven decisions. In Proceedings of the 2019 15th International Conference on eScience (eScience) (2019). [link](https://ieeexplore.ieee.org/document/9041768)
+
+[4] V. Pascucci and R. J. Frank, "Global Static Indexing for Real-Time Exploration of Very Large Regular Grids," SC '01: Proceedings of the 2001 ACM/IEEE Conference on Supercomputing, Denver, CO, USA, 2001, pp. 45-45, [link](http://doi.org/10.1145/582034.582036)
+
+[5] Pascucci, Valerio, et al. "The ViSUS visualization framework." High Performance Visualization. Chapman and Hall/CRC, 2012. 439-452. [link](https://www.taylorfrancis.com/chapters/edit/10.1201/b12985-32/visus-visualization-frame[…]a-gyulassy-cameron-christensen-sujin-philip-sidharth-kumar)
+
+[6] Brian Summa, Giorgio Scorzelli, Ming Jiang, Peer-Timo Bremer, and Valerio Pascucci. 2011. Interactive editing of massive imagery made simple: Turning Atlanta into Atlantis. ACM Trans. Graph. 30, 2, Article 7 (April 2011), 13 pages. [link](https://doi.org/10.1145/1944846.1944847)
 
 ## Copyright and License
 
