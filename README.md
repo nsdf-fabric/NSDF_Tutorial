@@ -53,7 +53,7 @@ Before starting this tutorial, ensure you have installed Git and Docker Desktop 
 
 After installation, confirm that both tools are correctly set up by executing the following commands in your terminal.
 
-> :bulb: **Note:** For Windows users, ee recommend using the [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/overview?view=powershell-7.4) terminal for these verifications.
+> :bulb: **Note:** For Windows users, we recommend using the [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/overview?view=powershell-7.4) terminal for these verifications.
 
 * To verify the GitHub installation:
 ```
