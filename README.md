@@ -37,8 +37,8 @@ This tutorial follows the steps in Figure 1.
 ### Table of content
   1. [Prerequisites](#prerequisites)
   2. [Running the Tutorial with Docker](#docker-compose-execution)
-  3. [Installation](#installation)
-  4. [Community](#community)
+  3. [APPENDIX: Installing the Tutorial from the Beginning ](#installation)
+  4. [Community and Resources](#community)
   5. [Related Publications](#related-publications)
   6. [Copyright and License](#copyright-and-license)
   7. [Authors](#authors)
@@ -114,9 +114,9 @@ When you have finished the tutorial, ensure to stop the Docker container to free
 docker-compose down
 ```
 
-## APPENDIX: Installing the Tutorial from Scratch 
+## APPENDIX: Installing the Tutorial from the Beginning 
 
-There are two ways to install and run the tutorial: i) [Using a docker container](#using-a-docker-container) and ii) [Using your local machine](#using-your-local-machine) 
+This session provides detailed instructions for setting up and running the workflow from the beginning. You have two options: you can set up a [Docker container](#using-a-docker-container) or configure your [local machine](#using-your-local-machine) for deployment. These instructions are designed for users with more advanced technical skills, and they can be customized to incorporate your application with GEOtiled.
 
 ### Using a Docker container
 
@@ -207,7 +207,7 @@ Run the Jupyter Notebook and follow the internal instructions:
 jupyter notebook Tutorial.ipynb
 ```
 
-## Community
+## Community and Resources
 
 NSDF and SOMOSPIE are open-source projects. Questions, discussion, and contributions are welcome. Contributions can be anything from new packages to bug fixes, documentation, or even new core features.
 
