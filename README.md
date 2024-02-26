@@ -213,7 +213,7 @@ NSDF and SOMOSPIE are open-source projects. Questions, discussion, and contribut
 
 NSDF Resources:
 - **Slack workspace**: [nsdf-workspace](https://nsdf-workspace.slack.com/).
-- **Github Discussions**: [issues](https://github.com/nsdf-fabric/catalog-comparison-tool/issues): not just for discussions, also Q&A.
+- **Github Discussions**: [issues](https://github.com/nsdf-fabric/catalog-comparison-tool/issues): Discussions and Q&A.
 - **Mailing list**: [https://groups.google.com/g/nsdf](https://groups.google.com/g/nsdf) - nsdf@googlegroups.com
 - **Twitter**: [@FabricNsdf](https://twitter.com/FabricNsdf).
 
