@@ -114,9 +114,9 @@ When you have finished the tutorial, ensure to stop the Docker container to free
 docker-compose down
 ```
 
-## Installation
+## APPENDIX: Installing the Tutorial from Scratch 
 
-There are two ways to install and run the tutorial: i) [Using your local machine](#using-your-local-machine) and ii) [Using a docker container](#using-a-docker-container)
+There are two ways to install and run the tutorial: i) [Using a docker container](#using-a-docker-container) and ii) [Using your local machine](#using-your-local-machine) 
 
 ### Using a Docker container
 
