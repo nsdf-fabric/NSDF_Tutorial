@@ -36,7 +36,7 @@ This tutorial follows the steps in Figure 1.
 
 ### Table of content
   1. [Prerequisites](#prerequisites)
-  2. [Docker-compose Execution](#docker-compose-execution)
+  2. [Running the Tutorial with Docker](#docker-compose-execution)
   3. [Installation](#installation)
   4. [Community](#community)
   5. [Related Publications](#related-publications)
