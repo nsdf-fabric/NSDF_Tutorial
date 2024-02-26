@@ -36,9 +36,9 @@ This tutorial follows the steps in Figure 1.
 
 ### Table of content
   1. [Prerequisites](#prerequisites)
-  2. [Running the Tutorial with Docker](#docker-compose-execution)
-  3. [APPENDIX: Installing the Tutorial from the Beginning ](#installation)
-  4. [Community and Resources](#community)
+  2. [Running the Tutorial with Docker](#running-the-tutorial-with-docker)
+  3. [APPENDIX: Installing the Tutorial from the Beginning ](#appendix-installing-the-tutorial-from-the-beginning)
+  4. [Community and Resources](#community-and-resources)
   5. [Related Publications](#related-publications)
   6. [Copyright and License](#copyright-and-license)
   7. [Authors](#authors)
