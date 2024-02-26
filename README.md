@@ -29,7 +29,7 @@ This tutorial follows the steps in Figure 1.
 <p align="center">
     <img src="files/docs/workflow-diagram.png" width="800">
     <br>
-    <em>Figure: Workflow diagram illustrating the tutorial's process of data collection, transformation, analysis, and storage using the SOMOSPIE engine and NSDF services.</em>
+    <em>Figure 1. Workflow diagram illustrating the tutorial's process of data collection, transformation, analysis, and storage using the SOMOSPIE engine and NSDF services.</em>
 </p>
 
 ---
