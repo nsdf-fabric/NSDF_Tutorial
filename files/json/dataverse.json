@@ -4,15 +4,7 @@
     "name_file": "files/tif_files/hillshading.tif"
   },
   {
-    "url": "https://demo.dataverse.org/api/access/datafile/:persistentId?persistentId=doi:10.70122/FK2/ARALOB/L3OUCD",
-    "name_file": "files/tif_files/aspect.tif"
-  },
-  {
     "url": "https://demo.dataverse.org/api/access/datafile/:persistentId?persistentId=doi:10.70122/FK2/ARALOB/7KAOQU",
     "name_file": "files/tif_files/elevation.tif"
-  },
-  {
-    "url": "https://demo.dataverse.org/api/access/datafile/:persistentId?persistentId=doi:10.70122/FK2/ARALOB/WSMVYG",
-    "name_file": "files/tif_files/slope.tif"
   }
 ]
