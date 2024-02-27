@@ -62,9 +62,9 @@ After installation, confirm that both tools are correctly set up by executing th
 # Check the Git version
 git --version
 ```
-Expected output: 
+Expected output (NOTE: git version can be different): 
 ```
-git version 3.12.0` 
+git version 3.12.0 
 ```
 
 * To verify Docker Desktop installation: Make sure you open the Docker Desktop application before running Docker commands.
