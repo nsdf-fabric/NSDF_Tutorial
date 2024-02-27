@@ -108,11 +108,7 @@ docker-compose up -d
 
 :bulb: **Note:** If you get a `permission denied` error, please add `sudo` before the command. For example, `sudo docker-compose up -d` 
 
-After executing the above command, open your preferred web browser (such as Google Chrome, Firefox, or Safari) and enter the following URL to access Jupyter Lab and the tutorial notebook (Tutorial.ipynb):
-```
-# Access to Jupyter Lab (Tutorial.ipynb)
-http://127.0.0.1:5000/lab/tree/Tutorial.ipynb
-```
+After executing the above command, open your preferred web browser (such as Google Chrome, Firefox, or Safari) and enter the following URL to access Jupyter Lab and the tutorial notebook (Tutorial.ipynb): http://127.0.0.1:5000/lab/tree/Tutorial.ipynb
 
 When you have finished the tutorial, ensure to stop the Docker container to free up resources. Do this by entering the following command in your terminal:
 ```
