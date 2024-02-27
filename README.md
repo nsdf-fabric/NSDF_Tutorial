@@ -18,11 +18,11 @@ This tutorial introduces [OpenVisus](https://github.com/sci-visus/OpenVisus), an
 
 Throughout the tutorial, you will learn how to:
 
-* Construct a modular workflow that combines your application module with NSDF services for enhanced data visualization and analysis.
+* **Construct a modular workflow** that combines your application components with NSDF services.
 
-* Upload and download intermediary data to/from public storage solutions such as Dataverse, and to/from private storage options like Seal Storage.
+* **Upload, download, and stream data** to and from **public and private storage** solutions.
 
-* Deploy the NSDF dashboard for sophisticated data visualization and analysis, including features like zooming in for detailed examination, selecting specific subregions for cropping, and exporting these areas in a format compatible with Python.
+* Deploy the NSDF dashboard for **large-scale data access, visualization, and analysis**.
 
 This tutorial follows the steps in Figure 1.
 
