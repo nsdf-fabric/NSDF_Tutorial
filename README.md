@@ -105,7 +105,8 @@ cd Openvisus_Tutorial
 # Launch the Docker environment:
 docker-compose up -d
 ```
-> :bulb: **Note:** If you get a `permission denied` error, please add `sudo` before the command. For example, `sudo docker-compose up -d` 
+
+:bulb: **Note:** If you get a `permission denied` error, please add `sudo` before the command. For example, `sudo docker-compose up -d` 
 
 After executing the above command, open your preferred web browser (such as Google Chrome, Firefox, or Safari) and enter the following URL to access Jupyter Lab and the tutorial notebook (Tutorial.ipynb):
 ```
