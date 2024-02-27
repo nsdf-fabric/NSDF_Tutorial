@@ -100,7 +100,7 @@ Now open the terminal and follow the next steps to deploy the tutorial in the Do
 git clone https://github.com/nsdf-fabric/Openvisus_Tutorial.git
 
 # Navigate to the tutorial directory:
-cd Openvisus_Tutorial
+cd NSDF_Tutorial
 
 # Launch the Docker environment:
 docker-compose up -d
@@ -135,7 +135,7 @@ docker build --platform linux/amd64 -t globalcomputinglab/somospie_openvisus .
 To pull the image from Dockerhub:
 
 ```
-docker pull --platform linux/amd64 globalcomputinglab/somospie_openvisus:latest
+docker pull --platform linux/amd64 globalcomputinglab/somospie_openvisus:tutorial
 ```
 
 To run:
