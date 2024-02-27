@@ -3,14 +3,14 @@ FROM --platform=linux/amd64 continuumio/miniconda3:23.10.0-1
 RUN mkdir app
 WORKDIR /app
 
-COPY files/ /app/files
-COPY idx_data/ /app/idx_data
-COPY openvisuspy/ /app/openvisuspy
-COPY GEOtiled/ /app/GEOTiled
-COPY Tutorial.ipynb /app
-COPY Explore_Data.ipynb /app
+COPY files/ /app/files/
+COPY idx_data/ /app/idx_data/
+COPY openvisuspy/ /app/openvisuspy/
+COPY GEOtiled/geotiled /app/geotiled/
+COPY Tutorial.ipynb /app/
+COPY Explore_Data.ipynb /app/
 COPY *.py /app/
-COPY environment.yml /app
+COPY environment.yml /app/
 
 # Install base utilities
 RUN apt-get update \
@@ -25,9 +25,9 @@ RUN apt-get update \
 #     /bin/bash ~/miniconda.sh -b -p /opt/conda
 
 # Put conda in path so we can use conda activate
-# ENV PATH=$CONDA_DIR/bin:$PATH
-#
-RUN conda update -n base conda && conda install -n base conda-libmamba-solver && conda config --set solver libmamba
+#ENV PATH=$CONDA_DIR/bin:$PATH
+
+#RUN conda update -n base conda && conda install -n base conda-libmamba-solver && conda config --set solver libmamba
 
 WORKDIR /app
 
@@ -36,7 +36,7 @@ SHELL ["conda", "run", "-n", "somospie", "/bin/bash", "-c"]
 
 RUN pip install openvisus
 
-WORKDIR /app/GEOtiled/geotiled
+WORKDIR /app/geotiled/
 RUN pip install -e .
 
 WORKDIR /app/openvisuspy
