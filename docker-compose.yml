@@ -4,7 +4,7 @@ services:
   tutorial:
     container_name: tutorial
     hostname: openvisus-tutorial
-    image: globalcomputinglab/somospie_openvisus:latest
+    image: globalcomputinglab/somospie_openvisus:tutorial
     pull_policy: always
     platform: linux/amd64
     build:
