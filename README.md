@@ -16,13 +16,13 @@
 
 This tutorial introduces [OpenVisus](https://github.com/sci-visus/OpenVisus), an [NSDF](https://nationalsciencedatafabric.org/) service that improves the way scientific data is accessed, analyzed, and visualized using cloud technologies. The tutorial provides step-by-step guidance using a module of the [SOMOSPIE](https://globalcomputing.group/somospie/) engine to collect raw data from a public source, like the USDA portal. This data is then converted into multiple files for analysis with NSDF and for storage on both public and private platforms.  The module used is [GEOtiled](https://github.com/TauferLab/GEOtiled), the first step in the SOMOSPIE process, which efficiently calculates terrain attributes over large areas from digital elevation models (DEMs), maintaining high accuracy.
 
-Throughout the tutorial, you will learn to:
+Throughout the tutorial, you will learn how to:
 
-Construct a modular workflow that combines your application module with NSDF services for enhanced data visualization and analysis.
+* Construct a modular workflow that combines your application module with NSDF services for enhanced data visualization and analysis.
 
-Upload and download intermediary data to/from public storage solutions such as Dataverse, and to/from private storage options like Seal Storage.
+* Upload and download intermediary data to/from public storage solutions such as Dataverse, and to/from private storage options like Seal Storage.
 
-Deploy the NSDF dashboard for sophisticated data visualization and analysis, including features like zooming in for detailed examination, selecting specific subregions for cropping, and exporting these areas in a format compatible with Python.
+* Deploy the NSDF dashboard for sophisticated data visualization and analysis, including features like zooming in for detailed examination, selecting specific subregions for cropping, and exporting these areas in a format compatible with Python.
 
 This tutorial follows the steps in Figure 1.
 
