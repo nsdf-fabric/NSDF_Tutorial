@@ -100,7 +100,7 @@ Now open the terminal and follow the next steps to deploy the tutorial in the Do
 git clone https://github.com/nsdf-fabric/Openvisus_Tutorial.git
 
 # Navigate to the tutorial directory:
-cd NSDF_Tutorial
+cd Openvisus_Tutorial
 
 # Launch the Docker environment:
 docker-compose up -d
