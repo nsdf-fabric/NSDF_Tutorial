@@ -105,6 +105,7 @@ cd Openvisus_Tutorial
 # Launch the Docker environment:
 docker-compose up -d
 ```
+> :bulb: **Note:** If you get a `permission denied while trying to connect to the Docker daemon socket` error, please run `sudo docker-compose up -d` 
 
 After executing the above command, open your preferred web browser (such as Google Chrome, Firefox, or Safari) and enter the following URL to access Jupyter Lab and the tutorial notebook (Tutorial.ipynb):
 ```
