@@ -97,10 +97,10 @@ To run this tutorial, we have prepared a Docker container named [`globalcomputin
 Now open the terminal and follow the next steps to deploy the tutorial in the Docker container:
 ```
 # Clone the tutorial repository:
-git clone https://github.com/nsdf-fabric/Openvisus_Tutorial.git
+git clone https://github.com/nsdf-fabric/NSDF_Tutorial.git
 
 # Navigate to the tutorial directory:
-cd Openvisus_Tutorial
+cd NSDF_Tutorial
 
 # Launch the Docker environment:
 docker-compose up -d
