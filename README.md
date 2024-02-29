@@ -1,6 +1,6 @@
 # **NSDF Tutorial: Using NSDF for End-to-End Analysis of Scientific Data**
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/HDFGroup/hdf5-tutorial)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/nsdf-fabric/NSDF_Tutorial)
 
 <p align="center">
     <img src="files/docs/Logos.png" width="450">
