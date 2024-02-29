@@ -2,7 +2,7 @@
   "name": "NSDF Tutorial",
   "build": {
     "context": "../",
-    "dockerfile": "Dockerfile"
+    "dockerfile": "../Dockerfile"
   },
   //   "postCreateCommand": "conda init",
   "customizations": {
