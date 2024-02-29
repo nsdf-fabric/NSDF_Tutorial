@@ -1,5 +1,7 @@
 # **NSDF Tutorial: Using NSDF for End-to-End Analysis of Scientific Data**
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/HDFGroup/hdf5-tutorial)
+
 <p align="center">
     <img src="files/docs/Logos.png" width="450">
 </p>
@@ -14,15 +16,15 @@
 
 ## Overview
 
-This tutorial introduces [OpenVisus](https://github.com/sci-visus/OpenVisus), an [NSDF](https://nationalsciencedatafabric.org/) service that improves the way scientific data is accessed, analyzed, and visualized using cloud technologies. The tutorial provides step-by-step guidance using a module of the [SOMOSPIE](https://globalcomputing.group/somospie/) engine to collect raw data from a public source, like the USDA portal. This data is then converted into multiple files for analysis with NSDF and for storage on both public and private platforms.  The module used is [GEOtiled](https://github.com/TauferLab/GEOtiled), the first step in the SOMOSPIE process, which efficiently calculates terrain attributes over large areas from digital elevation models (DEMs), maintaining high accuracy.
+This tutorial introduces [OpenVisus](https://github.com/sci-visus/OpenVisus), an [NSDF](https://nationalsciencedatafabric.org/) service that improves the way scientific data is accessed, analyzed, and visualized using cloud technologies. The tutorial provides step-by-step guidance using a module of the [SOMOSPIE](https://globalcomputing.group/somospie/) engine to collect raw data from a public source, like the USDA portal. This data is then converted into multiple files for analysis with NSDF and for storage on both public and private platforms. The module used is [GEOtiled](https://github.com/TauferLab/GEOtiled), the first step in the SOMOSPIE process, which efficiently calculates terrain attributes over large areas from digital elevation models (DEMs), maintaining high accuracy.
 
 Throughout the tutorial, you will learn how to:
 
-* **Construct a modular workflow** that combines your application components with NSDF services.
+- **Construct a modular workflow** that combines your application components with NSDF services.
 
-* **Upload, download, and stream data** to and from **public and private storage** solutions.
+- **Upload, download, and stream data** to and from **public and private storage** solutions.
 
-* Deploy the NSDF dashboard for **large-scale data access, visualization, and analysis**.
+- Deploy the NSDF dashboard for **large-scale data access, visualization, and analysis**.
 
 This tutorial follows the steps in Figure 1.
 
@@ -35,44 +37,51 @@ This tutorial follows the steps in Figure 1.
 ---
 
 ### Table of content
-  1. [Prerequisites](#prerequisites)
-  2. [Running the Tutorial with Docker](#running-the-tutorial-with-docker)
-  3. [APPENDIX: Installing the Tutorial from the Beginning ](#appendix-installing-the-tutorial-from-the-beginning)
-  4. [Community and Resources](#community-and-resources)
-  5. [Related Publications](#related-publications)
-  6. [Copyright and License](#copyright-and-license)
-  7. [Authors](#authors)
-  8. [Acknowledgments](#acknowledgments)
+
+1. [Prerequisites](#prerequisites)
+2. [Running the Tutorial with Docker](#running-the-tutorial-with-docker)
+3. [APPENDIX: Installing the Tutorial from the Beginning ](#appendix-installing-the-tutorial-from-the-beginning)
+4. [Community and Resources](#community-and-resources)
+5. [Related Publications](#related-publications)
+6. [Copyright and License](#copyright-and-license)
+7. [Authors](#authors)
+8. [Acknowledgments](#acknowledgments)
 
 ## Prerequisites
 
-> :bulb: **Note:** To follow this tutorial you must have a computer with minimum **8 GB of RAM** and **5 GB of free disk** 
+> :bulb: **Note:** To follow this tutorial you must have a computer with minimum **8 GB of RAM** and **5 GB of free disk**
 
 Before starting this tutorial, ensure you have installed Git and Docker Desktop on your computer.
 
-* **To install Git**: Follow the [installation instructions](https://github.com/git-guides/install-git) for your operating system (Linux, Windows, or Mac).
-* **To install Docker Desktop**: Follow the [installation instructions](https://docs.docker.com/engine/install/) for your operating system (Linux, Windows, or Mac). ***Be sure you are running the most recent version of Docker! Previous versions to 4.15.10 may not work.***
+- **To install Git**: Follow the [installation instructions](https://github.com/git-guides/install-git) for your operating system (Linux, Windows, or Mac).
+- **To install Docker Desktop**: Follow the [installation instructions](https://docs.docker.com/engine/install/) for your operating system (Linux, Windows, or Mac). **_Be sure you are running the most recent version of Docker! Previous versions to 4.15.10 may not work._**
 
 After installation, confirm that both tools are correctly set up by executing the following commands in your terminal.
 
 > :bulb: **Note:** For Windows users, we recommend using the [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/overview?view=powershell-7.4) terminal for these verifications.
 
-* To verify the GitHub installation:
+- To verify the GitHub installation:
+
 ```
 # Check the Git version
 git --version
 ```
-Expected output (NOTE: git version can be different): 
+
+Expected output (NOTE: git version can be different):
+
 ```
-git version 3.12.0 
+git version 3.12.0
 ```
 
-* To verify Docker Desktop installation: Make sure you open the Docker Desktop application before running Docker commands.
+- To verify Docker Desktop installation: Make sure you open the Docker Desktop application before running Docker commands.
+
 ```
 # Check the Docker installation information
 docker info
 ```
+
 Expected output:
+
 ```
 Client:
  Version:    24.0.5
@@ -86,6 +95,7 @@ Server:
   Stopped: 120
  Images: 48
 ```
+
 > :bulb: **Note:** The specific numbers in the output might vary based on your installation details and additional information may also appear.
 
 ## Running the Tutorial with Docker
@@ -95,6 +105,7 @@ To run this tutorial, we have prepared a Docker container named [`globalcomputin
 **:bulb: Note: Before following the next steps, make sure to open the Docker Desktop Application.**
 
 Now open the terminal and follow the next steps to deploy the tutorial in the Docker container:
+
 ```
 # Clone the tutorial repository:
 git clone https://github.com/nsdf-fabric/NSDF_Tutorial.git
@@ -106,17 +117,18 @@ cd NSDF_Tutorial
 docker-compose up -d
 ```
 
-:bulb: **Note:** If you get a `permission denied` error, please add `sudo` before the command. For example, `sudo docker-compose up -d` 
+:bulb: **Note:** If you get a `permission denied` error, please add `sudo` before the command. For example, `sudo docker-compose up -d`
 
 After executing the above command, open your preferred web browser (such as Google Chrome, Firefox, or Safari) and enter the following URL to access Jupyter Lab and the tutorial notebook (Tutorial.ipynb): http://127.0.0.1:5000/lab/tree/Tutorial.ipynb
 
 When you have finished the tutorial, ensure to stop the Docker container to free up resources. Do this by entering the following command in your terminal:
+
 ```
-# Stop the Docker container 
+# Stop the Docker container
 docker-compose down
 ```
 
-## APPENDIX: Installing the Tutorial from the Beginning 
+## APPENDIX: Installing the Tutorial from the Beginning
 
 This session provides detailed instructions for setting up and running the workflow from the beginning. You have two options: you can set up a [Docker container](#using-a-docker-container) or configure your [local machine](#using-your-local-machine) for deployment. These instructions are designed for users with more advanced technical skills, and they can be customized to incorporate your application with GEOtiled.
 
@@ -214,19 +226,22 @@ jupyter notebook Tutorial.ipynb
 NSDF and SOMOSPIE are open-source projects. Questions, discussion, and contributions are welcome. Contributions can be anything from new packages to bug fixes, documentation, or even new core features.
 
 NSDF Resources:
+
 - **Slack workspace**: [nsdf-workspace](https://nsdf-workspace.slack.com/).
 - **Github Discussions**: [issues](https://github.com/nsdf-fabric/catalog-comparison-tool/issues): Discussions and Q&A.
 - **Mailing list**: [https://groups.google.com/g/nsdf](https://groups.google.com/g/nsdf) - nsdf@googlegroups.com
 - **Twitter**: [@FabricNsdf](https://twitter.com/FabricNsdf)
 
 OpenVisus Resources:
+
 - **Github:** [Open Source distribution of the ViSUS capabilities](https://github.com/sci-visus/openvisus)
 - **Webpage:** [VISUS - High performance Big Data Analysis and Visualization Solutions](https://visus.org/)
 
 SOMOSPIE Resources:
+
 - **GitHub:** [SOMOSPIE software](https://github.com/TauferLab/SOMOSPIE)
 - **Webpage:** [SOMOSPIE overview](https://globalcomputing.group/somospie)
-- **Questions:** Michela Taufer [mtaufer@utk.edu](email:mtaufer@utk.edu) 
+- **Questions:** Michela Taufer [mtaufer@utk.edu](email:mtaufer@utk.edu)
 
 ## Related Publications
 
@@ -251,14 +266,15 @@ See [LICENSE](LICENSE) for more details.
 
 ## Authors
 
-This project was created by the [NSDF team](https://nationalsciencedatafabric.org/contributors.html) and the SOMOSPIE team. To reach out email us at [info@nationalsciencedatafabric.org](email:info@nationalsciencedatafabric.org) and Dr. Michela Taufer [mtaufer@utk.edu](email:mtaufer@utk.edu). 
+This project was created by the [NSDF team](https://nationalsciencedatafabric.org/contributors.html) and the SOMOSPIE team. To reach out email us at [info@nationalsciencedatafabric.org](email:info@nationalsciencedatafabric.org) and Dr. Michela Taufer [mtaufer@utk.edu](email:mtaufer@utk.edu).
 
 ## Acknowledgments
+
 The authors of this tutorial would like to express their gratitude to:
 
-* NSF through the awards 2138811, 2103845, 2334945, 2138296, and 2331152.
-* The Dataverse team [link](https://dataverse.org/about)
-* The Seal Storage team [link](https://www.sealstorage.io/home/#team)
-* Vargas Lab led by Dr. Rodrigo Vargas [link](https://www.udel.edu/academics/colleges/canr/departments/plant-and-soil-sciences/faculty-staff/rodrigo-vargas/)
+- NSF through the awards 2138811, 2103845, 2334945, 2138296, and 2331152.
+- The Dataverse team [link](https://dataverse.org/about)
+- The Seal Storage team [link](https://www.sealstorage.io/home/#team)
+- Vargas Lab led by Dr. Rodrigo Vargas [link](https://www.udel.edu/academics/colleges/canr/departments/plant-and-soil-sciences/faculty-staff/rodrigo-vargas/)
 
-Any opinions, findings, conclusions, or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.  
+Any opinions, findings, conclusions, or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
