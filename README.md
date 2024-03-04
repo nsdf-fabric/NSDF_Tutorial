@@ -1,18 +1,22 @@
 # **NSDF Tutorial: Using NSDF for End-to-End Analysis of Scientific Data**
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/nsdf-fabric/NSDF_Tutorial)
-
 <p align="center">
     <img src="files/docs/Logos.png" width="450">
 </p>
 
 <p align="center">
 <a href="https://www.python.org/downloads/release/python-310/"><img alt="Python 3.10" src="https://img.shields.io/badge/Python-3.10-3776AB.svg?style=flat&logo=python&logoColor=white"></a>
-<a href="https://dl.acm.org/doi/10.1145/3588195.3595941"><img alt="DOI" src="https://zenodo.org/badge/DOI/10.1145/3588195.3595941.svg"></a>
 <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache_2.0-green.svg"></a>
 <a href="https://nsdf-workspace.slack.com/"><img alt="Slack" src="https://badges.aleen42.com/src/slack.svg"></a>
 <a href="https://www.docker.com"><img alt="Docker" src="https://badges.aleen42.com/src/docker.svg"></a>
 <a href="https://github.com/astral-sh/ruff"><img alt="Ruff" src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json"></a>
+<a href="https://dl.acm.org/doi/10.1145/3588195.3595941"><img alt="DOI" src="https://zenodo.org/badge/DOI/10.1145/3588195.3595941.svg"></a>
+<a href="https://research.ibm.com/publications/enabling-scalability-in-the-cloud-for-scientific-workflows-an-earth-science-use-case"><img alt="DOI" src="https://zenodo.org/badge/DOI/10.1109/CLOUD60044.2023.00052.svg"></a>
+<a href="https://ieeexplore.ieee.org/document/9041768"><img alt="DOI" src="https://zenodo.org/badge/DOI/10.1109/eScience.2019.00008.svg"></a>
+<a href="http://doi.org/10.1145/582034.582036"><img alt="DOI" src="https://zenodo.org/badge/DOI/10.1145/582034.582036.svg"></a>
+<a href="https://www.taylorfrancis.com/chapters/edit/10.1201/b12985-32/visus-visualization-frame[…]a-gyulassy-cameron-christensen-sujin-philip-sidharth-kumar"><img alt="DOI" src="https://zenodo.org/badge/DOI/10.1201/b12985.svg"></a>
+<a href="https://doi.org/10.1145/1944846.1944847"><img alt="DOI" src="https://zenodo.org/badge/DOI/10.1145/1944846.1944847.svg"></a>
+</p>
 
 ## Overview
 
@@ -46,6 +50,38 @@ This tutorial follows the steps in Figure 1.
 6. [Copyright and License](#copyright-and-license)
 7. [Authors](#authors)
 8. [Acknowledgments](#acknowledgments)
+
+## Running the Tutorial with GitHub Codespaces
+
+Use your GitHub account to run this tutorial with GitHub codespaces
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/nsdf-fabric/NSDF_Tutorial)
+
+Now follow these steps to set up your virtual environment using GitHub codespaces:
+
+Verify that you are using the `main` branch, the repository name `nsdf-fabric/NSDF_Tutorial` and the dev container configuration `NSDF Tutorial`. Then click on `Create Codespace`
+
+<p align="center">
+    <img src="files/docs/codespaces.png" width="800">
+    <br>
+    <em>Figure 2. Creating GitHub codespaces.</em>
+</p>
+
+> :bulb: **Note:** This process may take a couple of minutes.
+
+<p align="center">
+    <img src="files/docs/Creating_container.png" width="800">
+    <br>
+    <em>Figure 3. Setting up your Codespace.</em>
+</p>
+
+After creating the codespace, execute the tutorial notebook (Tutorial.ipynb)
+
+<p align="center">
+    <img src="files/docs/vscode.png" width="800">
+    <br>
+    <em>Figure 4. VS Code in GitHub Codespaces.</em>
+</p>
 
 ## Prerequisites
 
@@ -172,26 +208,24 @@ channels:
 dependencies:
   - python=3.10
   - gdal
+  - ipykernel==6.29.2
+  - ipywidgets==8.1.2
+  - xmltodict
+  - requests
+  - colorcet
+  - jupyterlab
+  - tifffile
+  - rasterio
+  - imagecodecs
+  - boto3
+  - param==2.0.2
+  - bokeh==3.3.4
+  - ipywidgets-bokeh==1.5.0
   - pip
   - pip:
-      - pandas
-      - pyspark
-      - findspark
-      - scikit-learn
-      - matplotlib
-      - grass-session
-      - bokeh
-      - xmltodict
-      - requests
-      - colorcet
-      - geopandas
-      - tqdm
-      - panel
-      - jupyterlab
-      - grass-session
-      - tifffile
-      - rasterio
-      - imagecodecs
+      - panel==1.3.8
+      - OpenVisusNoGui==2.2.128
+
 ```
 
 To install the dependencies in your local machine, use the following command:
