@@ -43,47 +43,18 @@ This tutorial follows the steps in Figure 1.
 ### Table of content
 
 1. [Prerequisites](#prerequisites)
-2. [Running the Tutorial with Docker](#running-the-tutorial-with-docker)
-3. [APPENDIX: Installing the Tutorial from the Beginning ](#appendix-installing-the-tutorial-from-the-beginning)
-4. [Community and Resources](#community-and-resources)
-5. [Related Publications](#related-publications)
-6. [Copyright and License](#copyright-and-license)
-7. [Authors](#authors)
-8. [Acknowledgments](#acknowledgments)
-
-## Running the Tutorial with GitHub Codespaces
-
-Use your GitHub account to run this tutorial with GitHub codespaces
-
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/nsdf-fabric/NSDF_Tutorial)
-
-Now follow these steps to set up your virtual environment using GitHub codespaces:
-
-Verify that you are using the `main` branch, the repository name `nsdf-fabric/NSDF_Tutorial` and the dev container configuration `NSDF Tutorial`. Then click on `Create Codespace`
-
-<p align="center">
-    <img src="files/docs/codespaces.png" width="800">
-    <br>
-    <em>Figure 2. Creating GitHub codespaces.</em>
-</p>
-
-> :bulb: **Note:** This process may take a couple of minutes.
-
-<p align="center">
-    <img src="files/docs/Creating_container.png" width="800">
-    <br>
-    <em>Figure 3. Setting up your Codespace.</em>
-</p>
-
-After creating the codespace, execute the tutorial notebook (Tutorial.ipynb)
-
-<p align="center">
-    <img src="files/docs/vscode.png" width="800">
-    <br>
-    <em>Figure 4. VS Code in GitHub Codespaces.</em>
-</p>
+2. [Running the Tutorial with GitHub Codespaces](#running-the-tutorial-with-github-codespaces)
+3. [Running the Tutorial with Docker](#running-the-tutorial-with-docker)
+4. [APPENDIX: Installing the Tutorial from the Beginning ](#appendix-installing-the-tutorial-from-the-beginning)
+5. [Community and Resources](#community-and-resources)
+6. [Related Publications](#related-publications)
+7. [Copyright and License](#copyright-and-license)
+8. [Authors](#authors)
+9. [Acknowledgments](#acknowledgments)
 
 ## Prerequisites
+
+> :bulb: **Note:** These prerequisites are required to run the section 3 [Running the Tutorial with Docker](#running-the-tutorial-with-docker)
 
 > :bulb: **Note:** To follow this tutorial you must have a computer with minimum **8 GB of RAM** and **5 GB of free disk**
 
@@ -133,6 +104,40 @@ Server:
 ```
 
 > :bulb: **Note:** The specific numbers in the output might vary based on your installation details and additional information may also appear.
+
+## Running the Tutorial with GitHub Codespaces
+
+> :bulb: **Note:** To follow this tutorial using the GitHub Codespaces you must have a GitHub Account
+
+Use your GitHub account to run this tutorial with GitHub codespaces
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/nsdf-fabric/NSDF_Tutorial)
+
+Now follow these steps to set up your virtual environment using GitHub codespaces:
+
+Verify that you are using the `main` branch, the repository name `nsdf-fabric/NSDF_Tutorial` and the dev container configuration `NSDF Tutorial`. Then click on `Create Codespace`
+
+<p align="center">
+    <img src="files/docs/codespaces.png" width="800">
+    <br>
+    <em>Figure 2. Creating GitHub codespaces.</em>
+</p>
+
+> :bulb: **Note:** This process may take a couple of minutes.
+
+<p align="center">
+    <img src="files/docs/Creating_container.png" width="800">
+    <br>
+    <em>Figure 3. Setting up your Codespace.</em>
+</p>
+
+After creating the codespace, execute the tutorial notebook (Tutorial.ipynb)
+
+<p align="center">
+    <img src="files/docs/vscode.png" width="800">
+    <br>
+    <em>Figure 4. VS Code in GitHub Codespaces.</em>
+</p>
 
 ## Running the Tutorial with Docker
 
