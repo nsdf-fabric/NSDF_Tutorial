@@ -4,6 +4,26 @@
     "context": "../",
     "dockerfile": "../Dockerfile"
   },
-  "postCreateCommand": "conda activate somospie"
+  "containerEnv": {
+    "PROJ_LIB": "/opt/conda/envs/somospie/share/proj"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-toolsai.jupyter",
+        "ms-vscode.cpptools",
+        "h5web.vscode-h5web",
+        "davidanson.vscode-markdownlint"
+      ],
+      "settings": {
+        "C_Cpp.default.cppStandard": "c++17",
+        "C_Cpp.default.cStandard": "c99",
+        "python.defaultInterpreterPath": "/opt/conda/envs/somospie/bin/python",
+        "python.languageServer": "Default",
+        "terminal.integrated.shell.linux": "/bin/bash"
+      }
+    }
+  }
   
 }
