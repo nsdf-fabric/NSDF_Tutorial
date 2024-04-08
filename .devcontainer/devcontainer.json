@@ -1,9 +1,6 @@
 {
   "name": "NSDF Tutorial",
-  "build": {
-    "context": "../",
-    "dockerfile": "../Dockerfile"
-  },
+  "image": "globalcomputinglab/somospie_openvisus:tutorial",
   "containerEnv": {
     "PROJ_LIB": "/opt/conda/envs/somospie/share/proj"
   },
