@@ -4,6 +4,6 @@
     "context": "../",
     "dockerfile": "../Dockerfile"
   },
-  "postCreateCommand": "conda init && conda activate somospie"
+  "postCreateCommand": "conda activate somospie"
   
 }
