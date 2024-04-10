@@ -58,12 +58,13 @@ import geopandas as gpd
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
 def bash(argv):
     """
     Execute bash commands using Popen.
     ----------------------------------
 
-    This function acts as a wrapper to execute bash commands using the subprocess Popen method. Commands are executed synchronously, 
+    This function acts as a wrapper to execute bash commands using the subprocess Popen method. Commands are executed synchronously,
     and errors are caught and raised.
 
     Required Parameters
@@ -86,23 +87,29 @@ def bash(argv):
     - It's essential to ensure that the arguments in the 'argv' list are correctly ordered and formatted for the desired bash command.
     """
     arg_seq = [str(arg) for arg in argv]
-    proc = subprocess.Popen(arg_seq, stdout=subprocess.PIPE, stderr=subprocess.PIPE)#, shell=True)
-    proc.wait() #... unless intentionally asynchronous
+    proc = subprocess.Popen(
+        arg_seq, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+    )  # , shell=True)
+    proc.wait()  # ... unless intentionally asynchronous
     stdout, stderr = proc.communicate()
 
     # Error catching: https://stackoverflow.com/questions/5826427/can-a-python-script-execute-a-function-inside-a-bash-script
     if proc.returncode != 0:
-        raise RuntimeError("'%s' failed, error code: '%s', stdout: '%s', stderr: '%s'" % (
-            ' '.join(arg_seq), proc.returncode, stdout.rstrip(), stderr.rstrip()))
+        raise RuntimeError(
+            "'%s' failed, error code: '%s', stdout: '%s', stderr: '%s'"
+            % (" ".join(arg_seq), proc.returncode, stdout.rstrip(), stderr.rstrip())
+        )
+
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-def build_mosaic(input_files, output_file, description = "Elevation"):
+
+def build_mosaic(input_files, output_file, description="Elevation"):
     """
     Build a mosaic of geo-tiles using the GDAL library.
     ---------------------------------------------------
 
-    This function creates a mosaic from a list of geo-tiles. 
+    This function creates a mosaic from a list of geo-tiles.
     It is an integral part of the GEOTILED workflow and is frequently used for merging tiles into a single mosaic file.
 
     Required Parameters
@@ -120,7 +127,7 @@ def build_mosaic(input_files, output_file, description = "Elevation"):
     Outputs
     -------
     None
-        The function does not return any value. 
+        The function does not return any value.
         Generates a .tif file representing the created mosaic. This file will be placed at the location specified by 'output_file'.
 
     Notes
@@ -130,7 +137,14 @@ def build_mosaic(input_files, output_file, description = "Elevation"):
     """
     # input_files: list of .tif files to merge
     vrt = gdal.BuildVRT("merged.vrt", input_files)
-    translate_options = gdal.TranslateOptions(creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'])#,callback=gdal.TermProgress_nocb)
+    translate_options = gdal.TranslateOptions(
+        creationOptions=[
+            "COMPRESS=LZW",
+            "TILED=YES",
+            "BIGTIFF=YES",
+            "NUM_THREADS=ALL_CPUS",
+        ]
+    )  # ,callback=gdal.TermProgress_nocb)
     gdal.Translate(output_file, vrt, options=translate_options)
     vrt = None  # closes file
     dataset = gdal.Open(output_file)
@@ -140,6 +154,7 @@ def build_mosaic(input_files, output_file, description = "Elevation"):
 
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 def build_mosaic_filtered(input_files, output_file):
     """
@@ -169,19 +184,22 @@ def build_mosaic_filtered(input_files, output_file):
       ensuring a smooth transition between tiles.
     - Overlapping regions in the mosaic are handled by averaging pixel values.
     """
-    vrt = gdal.BuildVRT('merged.vrt', input_files)
+    vrt = gdal.BuildVRT("merged.vrt", input_files)
     vrt = None  # closes file
 
-    with open('merged.vrt', 'r') as f:
+    with open("merged.vrt", "r") as f:
         contents = f.read()
 
-    if '<NoDataValue>' in contents:
-        nodata_value = contents[contents.index('<NoDataValue>') + len(
-            '<NoDataValue>'): contents.index('</NoDataValue>')]  # To add averaging function
+    if "<NoDataValue>" in contents:
+        nodata_value = contents[
+            contents.index("<NoDataValue>") + len("<NoDataValue>") : contents.index(
+                "</NoDataValue>"
+            )
+        ]  # To add averaging function
     else:
         nodata_value = 0
 
-    code = '''band="1" subClass="VRTDerivedRasterBand">
+    code = """band="1" subClass="VRTDerivedRasterBand">
   <PixelFunctionType>average</PixelFunctionType>
   <PixelFunctionLanguage>Python</PixelFunctionLanguage>
   <PixelFunctionCode><![CDATA[
@@ -193,28 +211,40 @@ def average(in_ar, out_ar, xoff, yoff, xsize, ysize, raster_xsize,raster_ysize, 
     mask = np.all(data.mask,axis = 0)
     out_ar[mask] = {}
 ]]>
-  </PixelFunctionCode>'''.format(nodata_value, nodata_value)
+  </PixelFunctionCode>""".format(nodata_value, nodata_value)
 
     sub1, sub2 = contents.split('band="1">', 1)
     contents = sub1 + code + sub2
 
-    with open('merged.vrt', 'w') as f:
+    with open("merged.vrt", "w") as f:
         f.write(contents)
 
-    cmd = ['gdal_translate', '-co', 'COMPRESS=LZW', '-co', 'TILED=YES', '-co', 
-           'BIGTIFF=YES', '--config', 'GDAL_VRT_ENABLE_PYTHON', 'YES', 'merged.vrt', output_file]
+    cmd = [
+        "gdal_translate",
+        "-co",
+        "COMPRESS=LZW",
+        "-co",
+        "TILED=YES",
+        "-co",
+        "BIGTIFF=YES",
+        "--config",
+        "GDAL_VRT_ENABLE_PYTHON",
+        "YES",
+        "merged.vrt",
+        output_file,
+    ]
     bash(cmd)
 
-    
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 def build_stack(input_files, output_file):
     """
     Stack a list of .tif files into a single .tif file with multiple bands.
     ------------------------------------------------------------------------
 
-    This function takes multiple .tif files and combines them into a single .tif file where each input file represents a separate band. 
+    This function takes multiple .tif files and combines them into a single .tif file where each input file represents a separate band.
     This operation is useful when multiple datasets, each represented by a separate .tif file, need to be combined into a single multi-band raster.
 
     Required Parameters
@@ -238,11 +268,15 @@ def build_stack(input_files, output_file):
     # input_files: list of .tif files to stack
     vrt_options = gdal.BuildVRTOptions(separate=True)
     vrt = gdal.BuildVRT("stack.vrt", input_files, options=vrt_options)
-    translate_options = gdal.TranslateOptions(creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])#,callback=gdal.TermProgress_nocb)
+    translate_options = gdal.TranslateOptions(
+        creationOptions=["COMPRESS=LZW", "TILED=YES", "BIGTIFF=YES"]
+    )  # ,callback=gdal.TermProgress_nocb)
     gdal.Translate(output_file, vrt, options=translate_options)
     vrt = None  # closes file
 
+
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 def change_raster_format(input_file, output_file, raster_format):
     """
@@ -250,7 +284,7 @@ def change_raster_format(input_file, output_file, raster_format):
     -------------------------------------------
 
     This function leverages the GDAL library to facilitate raster format conversion.
-    It allows users to convert the format of their .tif raster files to several supported formats, 
+    It allows users to convert the format of their .tif raster files to several supported formats,
     specifically highlighting the GTiff and NC4C formats.
 
     Required Parameters
@@ -260,7 +294,7 @@ def change_raster_format(input_file, output_file, raster_format):
     output_file : str
         String representing the desired location and filename for the output raster.
     raster_format : str
-        String indicating the desired output format for the raster conversion. 
+        String indicating the desired output format for the raster conversion.
         Supported formats can be found at `GDAL Raster Formats <https://gdal.org/drivers/raster/index.html>`.
         This function explicitly supports GTiff and NC4C.
 
@@ -272,31 +306,40 @@ def change_raster_format(input_file, output_file, raster_format):
 
     Notes
     -----
-    - While GTiff and NC4C formats have been explicitly mentioned, 
+    - While GTiff and NC4C formats have been explicitly mentioned,
       the function supports several other formats as listed in the GDAL documentation.
-    - The function sets specific creation options for certain formats. 
+    - The function sets specific creation options for certain formats.
       For example, the GTiff format will use LZW compression, tiling, and support for large files.
     """
 
     # Supported formats: https://gdal.org/drivers/raster/index.html
     # SAGA, GTiff
-    if raster_format == 'GTiff':
-        translate_options = gdal.TranslateOptions(format=raster_format, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])#,callback=gdal.TermProgress_nocb)
-    elif raster_format == 'NC4C':
-        translate_options = gdal.TranslateOptions(format=raster_format, creationOptions=['COMPRESS=DEFLATE'])#,callback=gdal.TermProgress_nocb)
+    if raster_format == "GTiff":
+        translate_options = gdal.TranslateOptions(
+            format=raster_format,
+            creationOptions=["COMPRESS=LZW", "TILED=YES", "BIGTIFF=YES"],
+        )  # ,callback=gdal.TermProgress_nocb)
+    elif raster_format == "NC4C":
+        translate_options = gdal.TranslateOptions(
+            format=raster_format, creationOptions=["COMPRESS=DEFLATE"]
+        )  # ,callback=gdal.TermProgress_nocb)
     else:
-        translate_options = gdal.TranslateOptions(format=raster_format)#,callback=gdal.TermProgress_nocb)
-    
+        translate_options = gdal.TranslateOptions(
+            format=raster_format
+        )  # ,callback=gdal.TermProgress_nocb)
+
     gdal.Translate(output_file, input_file, options=translate_options)
 
+
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 def compute_geotiled(input_file):
     """
     Generate terrain parameters for an elevation model.
     ---------------------------------------------------
 
-    This function uses the GDAL library to compute terrain parameters like slope, aspect, and hillshading 
+    This function uses the GDAL library to compute terrain parameters like slope, aspect, and hillshading
     from a provided elevation model in .tif format.
 
     Required Parameters
@@ -317,43 +360,50 @@ def compute_geotiled(input_file):
       - Aspect
       - Hillshading
     - The generated parameter files adopt the following GDAL creation options: 'COMPRESS=LZW', 'TILED=YES', and 'BIGTIFF=YES'.
-    - The hillshading file undergoes an additional step to change its datatype to match that of the other parameters and 
+    - The hillshading file undergoes an additional step to change its datatype to match that of the other parameters and
       also sets its nodata value. The intermediate file used for this process is removed after the conversion.
     """
 
     out_folder = os.path.dirname(os.path.dirname(input_file))
-    out_file = os.path.join(out_folder,'slope_tiles', os.path.basename(input_file))
-    # Slope
-    dem_options = gdal.DEMProcessingOptions(format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
-    gdal.DEMProcessing(out_file, input_file, processing='slope', options=dem_options)
+    # out_file = os.path.join(out_folder,'slope_tiles', os.path.basename(input_file))
+    # # Slope
+    # dem_options = gdal.DEMProcessingOptions(format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
+    # gdal.DEMProcessing(out_file, input_file, processing='slope', options=dem_options)
 
-    #Adding 'Slope' name to band description 
-    dataset = gdal.Open(out_file)
-    band = dataset.GetRasterBand(1)
-    band.SetDescription("Slope")
-    dataset = None
+    # #Adding 'Slope' name to band description
+    # dataset = gdal.Open(out_file)
+    # band = dataset.GetRasterBand(1)
+    # band.SetDescription("Slope")
+    # dataset = None
 
-    # Aspect
-    out_file = os.path.join(out_folder,'aspect_tiles', os.path.basename(input_file))
-    dem_options = gdal.DEMProcessingOptions(zeroForFlat=False, format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
-    gdal.DEMProcessing(out_file, input_file, processing='aspect', options=dem_options)
+    # # Aspect
+    # out_file = os.path.join(out_folder,'aspect_tiles', os.path.basename(input_file))
+    # dem_options = gdal.DEMProcessingOptions(zeroForFlat=False, format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
+    # gdal.DEMProcessing(out_file, input_file, processing='aspect', options=dem_options)
 
-    #Adding 'Aspect' name to band description 
-    dataset = gdal.Open(out_file)
-    band = dataset.GetRasterBand(1)
-    band.SetDescription("Aspect")
-    dataset = None
-    
+    # #Adding 'Aspect' name to band description
+    # dataset = gdal.Open(out_file)
+    # band = dataset.GetRasterBand(1)
+    # band.SetDescription("Aspect")
+    # dataset = None
+
     # Hillshading
-    out_file = os.path.join(out_folder,'hillshading_tiles', os.path.basename(input_file))
-    dem_options = gdal.DEMProcessingOptions(format='GTiff', creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])
-    gdal.DEMProcessing(out_file, input_file, processing='hillshade', options=dem_options)
+    out_file = os.path.join(
+        out_folder, "hillshading_tiles", os.path.basename(input_file)
+    )
+    dem_options = gdal.DEMProcessingOptions(
+        format="GTiff", creationOptions=["COMPRESS=LZW", "TILED=YES", "BIGTIFF=YES"]
+    )
+    gdal.DEMProcessing(
+        out_file, input_file, processing="hillshade", options=dem_options
+    )
 
-    #Adding 'Hillshading' name to band description 
+    # Adding 'Hillshading' name to band description
     dataset = gdal.Open(out_file)
     band = dataset.GetRasterBand(1)
     band.SetDescription("Hillshading")
     dataset = None
+
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -368,11 +418,11 @@ def compute_geotiled(input_file):
 #     -------------------
 #     input_prefix : str
 #         Prefix path for the input DEM (elevation.tif) and the resulting parameter files.
-#         For instance, if input_prefix is "/path/to/dem/", then the elevation file should be 
+#         For instance, if input_prefix is "/path/to/dem/", then the elevation file should be
 #         "/path/to/dem/elevation.tif" and the resulting slope will be at "/path/to/dem/slope.tif", etc.
 #     parameters : list of str
 #         List of strings specifying which topographic parameters to compute. Possible values are:
-#         'slope', 'aspect', 'hillshading', 'twi', 'plan_curvature', 'profile_curvature', 
+#         'slope', 'aspect', 'hillshading', 'twi', 'plan_curvature', 'profile_curvature',
 #         'convergence_index', 'valley_depth', 'ls_factor'.
 
 #     Outputs
@@ -440,7 +490,7 @@ def compute_geotiled(input_file):
 
 #         tmpdir.cleanup()
 #         s.close()
-        
+
 #         # Slope and aspect with GRASS GIS (uses underlying GDAL implementation)
 #         #vgscript.run_command('r.slope.aspect', elevation='elevation', aspect='aspect.tif', slope='slope.tif', overwrite=True)
 
@@ -451,18 +501,18 @@ def compute_geotiled(input_file):
 #     Compute various topographic parameters concurrently using multiple processes.
 #     ------------------------------------------------------------------------------
 
-#     This function optimizes the performance of the `compute_params` function by concurrently computing 
+#     This function optimizes the performance of the `compute_params` function by concurrently computing
 #     various topographic parameters. It utilizes Python's concurrent futures for parallel processing.
 
 #     Required Parameters
 #     -------------------
 #     input_prefix : str
 #         Prefix path for the input DEM (elevation.tif) and the resulting parameter files.
-#         E.g., if `input_prefix` is "/path/to/dem/", the elevation file is expected at 
+#         E.g., if `input_prefix` is "/path/to/dem/", the elevation file is expected at
 #         "/path/to/dem/elevation.tif", and the resulting slope at "/path/to/dem/slope.tif", etc.
 #     parameters : list of str
 #         List of strings specifying which topographic parameters to compute. Possible values include:
-#         'slope', 'aspect', 'hillshading', 'twi', 'plan_curvature', 'profile_curvature', 
+#         'slope', 'aspect', 'hillshading', 'twi', 'plan_curvature', 'profile_curvature',
 #         'convergence_index', 'valley_depth', 'ls_factor'.
 
 #     Outputs
@@ -485,6 +535,7 @@ def compute_geotiled(input_file):
 #             executor.submit(compute_params, input_prefix, param)
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 def crop_coord(input_file, output_file, upper_left, lower_right):
     """
@@ -525,26 +576,30 @@ def crop_coord(input_file, output_file, upper_left, lower_right):
     # upper_left = (x, y), lower_right = (x, y)
     # Coordinates must be in the same projection as the raster
     window = upper_left + lower_right
-    translate_options = gdal.TranslateOptions(projWin=window, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])#,callback=gdal.TermProgress_nocb)
+    translate_options = gdal.TranslateOptions(
+        projWin=window, creationOptions=["COMPRESS=LZW", "TILED=YES", "BIGTIFF=YES"]
+    )  # ,callback=gdal.TermProgress_nocb)
     gdal.Translate(output_file, input_file, options=translate_options)
+
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-def crop_into_tiles(mosaic, out_folder, n_tiles, buffer = 10):
+
+def crop_into_tiles(mosaic, out_folder, n_tiles, buffer=10):
     """
     Splits a mosaic image into smaller, equally-sized tiles and saves them to a specified folder.
     ----------------------------------------------------------------------------------------------
 
     The function divides the mosaic into a specified number of tiles (n_tiles), taking care
-    to adjust the dimensions of edge tiles and add a buffer to each tile. 
+    to adjust the dimensions of edge tiles and add a buffer to each tile.
 
-    Required Parameters 
+    Required Parameters
     --------------------
         mosaic : str
             The file path of the mosaic image.
         out_folder : str
             The directory path where the tile images will be saved.
-        n_tiles : int 
+        n_tiles : int
             The total number of tiles to produce. Must be a perfect square number.
 
     Optional Parameters
@@ -558,7 +613,7 @@ def crop_into_tiles(mosaic, out_folder, n_tiles, buffer = 10):
 
     Notes
     ------
-        - The function will automatically create a buffer of overlapping pixels that is included in the borders between two tiles. This is customizable with the "buffer" kwarg. 
+        - The function will automatically create a buffer of overlapping pixels that is included in the borders between two tiles. This is customizable with the "buffer" kwarg.
     """
     n_tiles = math.sqrt(n_tiles)
 
@@ -582,7 +637,7 @@ def crop_into_tiles(mosaic, out_folder, n_tiles, buffer = 10):
             else:
                 ncols = cols - j
 
-            tile_file = out_folder + '/tile_' + '{0:04d}'.format(tile_count) + '.tif'
+            tile_file = out_folder + "/tile_" + "{0:04d}".format(tile_count) + ".tif"
             win = [j, i, ncols, nrows]
 
             # Upper left corner
@@ -593,20 +648,21 @@ def crop_into_tiles(mosaic, out_folder, n_tiles, buffer = 10):
             win[2] = w if win[0] + w < cols else cols - win[0]
 
             h = win[3] + 2 * buffer
-            win[3] = h if win[1] + h < rows else rows - win[1]  
-
+            win[3] = h if win[1] + h < rows else rows - win[1]
 
             crop_pixels(mosaic, tile_file, win)
             tile_count += 1
 
+
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 def crop_region(input_file, shp_file, output_file):
     """
     Crop a raster file based on a region defined by a shapefile.
     ------------------------------------------------------------------
 
-    This function uses the GDAL library to crop a raster file according to the boundaries 
+    This function uses the GDAL library to crop a raster file according to the boundaries
     specified in a shapefile.
 
     Required Parameters
@@ -621,12 +677,12 @@ def crop_region(input_file, shp_file, output_file):
     Outputs
     -------
     None
-        Produces a cropped raster file at the designated `output_file` location using boundaries 
+        Produces a cropped raster file at the designated `output_file` location using boundaries
         from the `shp_file`.
 
     Notes
     -----
-    - Utilizes GDAL's Warp method, setting the `cutlineDSName` option and enabling `cropToCutline` 
+    - Utilizes GDAL's Warp method, setting the `cutlineDSName` option and enabling `cropToCutline`
       for shapefile-based cropping.
 
     Error states
@@ -634,20 +690,26 @@ def crop_region(input_file, shp_file, output_file):
     - GDAL may generate an error if the shapefile's boundaries exceed the input raster's limits.
     - GDAL can also report errors if the provided shapefile is invalid or devoid of geometries.
     """
-    warp_options = gdal.WarpOptions(cutlineDSName=shp_file, cropToCutline=True, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])#,callback=gdal.TermProgress_nocb)
+    warp_options = gdal.WarpOptions(
+        cutlineDSName=shp_file,
+        cropToCutline=True,
+        creationOptions=["COMPRESS=LZW", "TILED=YES", "BIGTIFF=YES"],
+    )  # ,callback=gdal.TermProgress_nocb)
     warp = gdal.Warp(output_file, input_file, options=warp_options)
     warp = None
 
+
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 def crop_to_valid_data(input_file, output_file, block_size=512):
     """
-    Crops a border region of NaN values from a GeoTIFF file. 
+    Crops a border region of NaN values from a GeoTIFF file.
     -----------------------------------------------------------
 
     Using a blocking method, the function will scan through the GeoTIFF file to determine the extent of valid data in order to crop of excess border NaN values.
 
-    Required Parameters 
+    Required Parameters
     --------------------
         input_file : str
             Path to the input GeoTIFF file.
@@ -657,7 +719,7 @@ def crop_to_valid_data(input_file, output_file, block_size=512):
     Optional Parameters
     --------------------
         block_size : int
-            Specifies the size of blocks used in computing the extent. Default is 512. This means that a max 512x512 pixel area will be loaded into memory at any time. 
+            Specifies the size of blocks used in computing the extent. Default is 512. This means that a max 512x512 pixel area will be loaded into memory at any time.
 
     Returns:
     ---------
@@ -669,11 +731,11 @@ def crop_to_valid_data(input_file, output_file, block_size=512):
     """
     src_ds = gdal.Open(input_file, gdal.GA_ReadOnly)
     src_band = src_ds.GetRasterBand(1)
-    
+
     no_data_value = src_band.GetNoDataValue()
-    
+
     gt = src_ds.GetGeoTransform()
-    
+
     # Initialize bounding box variables to None
     x_min, x_max, y_min, y_max = None, None, None, None
 
@@ -691,10 +753,12 @@ def crop_to_valid_data(input_file, output_file, block_size=512):
             else:
                 actual_block_width = src_band.XSize - j
 
-            block_data = src_band.ReadAsArray(j, i, actual_block_width, actual_block_height)
-            
+            block_data = src_band.ReadAsArray(
+                j, i, actual_block_width, actual_block_height
+            )
+
             rows, cols = np.where(block_data != no_data_value)
-            
+
             if rows.size > 0 and cols.size > 0:
                 if x_min is None or j + cols.min() < x_min:
                     x_min = j + cols.min()
@@ -710,9 +774,14 @@ def crop_to_valid_data(input_file, output_file, block_size=512):
     max_x = gt[0] + (x_max + 1) * gt[1]
     min_y = gt[3] + (y_max + 1) * gt[5]
     max_y = gt[3] + y_min * gt[5]
-    
-    out_ds = gdal.Translate(output_file, src_ds, projWin=[min_x, max_y, max_x, min_y], projWinSRS='EPSG:4326')
-    
+
+    out_ds = gdal.Translate(
+        output_file,
+        src_ds,
+        projWin=[min_x, max_y, max_x, min_y],
+        projWinSRS="EPSG:4326",
+    )
+
     out_ds = None
     src_ds = None
 
@@ -725,7 +794,7 @@ def crop_pixels(input_file, output_file, window):
     Crop a raster file to a specific region using provided pixel window.
     ---------------------------------------------------------------------
 
-    This function uses the GDAL library to perform the cropping operation based on pixel coordinates 
+    This function uses the GDAL library to perform the cropping operation based on pixel coordinates
     rather than geospatial coordinates.
 
     Required Parameters
@@ -755,7 +824,9 @@ def crop_pixels(input_file, output_file, window):
     """
 
     # Window to crop by [left_x, top_y, width, height]
-    translate_options = gdal.TranslateOptions(srcWin=window, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES'])#,callback=gdal.TermProgress_nocb)
+    translate_options = gdal.TranslateOptions(
+        srcWin=window, creationOptions=["COMPRESS=LZW", "TILED=YES", "BIGTIFF=YES"]
+    )  # ,callback=gdal.TermProgress_nocb)
     gdal.Translate(output_file, input_file, options=translate_options)
 
 
@@ -787,22 +858,23 @@ def download_file(url, folder, pbar):
 
     Notes
     -----
-    - This function is meant to be used inside of `download_files()`. If you use it outside of that, YMMV. 
+    - This function is meant to be used inside of `download_files()`. If you use it outside of that, YMMV.
     - If the file already exists in the specified folder, no download occurs, and the function returns 0.
     - Utilizes the requests library for file retrieval and tqdm for progress visualization.
     """
-    local_filename = os.path.join(folder, url.split('/')[-1])
+    local_filename = os.path.join(folder, url.split("/")[-1])
     if os.path.exists(local_filename):
         return 0
 
     response = requests.get(url, stream=True)
     downloaded_size = 0
-    with open(local_filename, 'wb') as f:
+    with open(local_filename, "wb") as f:
         for chunk in response.iter_content(chunk_size=8192):
             f.write(chunk)
             downloaded_size += len(chunk)
             pbar.update(len(chunk))
     return downloaded_size
+
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -820,7 +892,7 @@ def download_files(input, folder="./"):
         Can either be:
         1. A string specifying the path to a .txt file. This file should contain URLs separated by newlines.
         2. A list of strings where each string is a URL.
-    
+
     Optional Parameters
     -------------------
     folder : str
@@ -836,34 +908,43 @@ def download_files(input, folder="./"):
     - The function uses `ThreadPoolExecutor` from the `concurrent.futures` library to achieve multi-threaded downloads for efficiency.
     - The tqdm progress bar displays the download progress.
     - If the 'input' argument is a string, it's assumed to be the path to a .txt file containing URLs.
-    - Will not download files if the file already exists, but the progress bar will not reflect it. 
+    - Will not download files if the file already exists, but the progress bar will not reflect it.
     """
     if isinstance(input, str):
-        with open(input, 'r', encoding='utf8') as dsvfile:
-            urls = [url.strip().replace("'$", "")
-                    for url in dsvfile.readlines()]
+        with open(input, "r", encoding="utf8") as dsvfile:
+            urls = [url.strip().replace("'$", "") for url in dsvfile.readlines()]
     else:
         urls = input
     print(input)
     total_size = sum(get_file_size(url.strip()) for url in urls)
     downloaded_size = 0
 
-    with tqdm(total=total_size, unit='B', unit_scale=True, ncols=1000, desc="Downloading", colour='green') as pbar:
+    with tqdm(
+        total=total_size,
+        unit="B",
+        unit_scale=True,
+        ncols=1000,
+        desc="Downloading",
+        colour="green",
+    ) as pbar:
         with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
-            futures = [executor.submit(
-                download_file, url, folder, pbar) for url in urls]
+            futures = [
+                executor.submit(download_file, url, folder, pbar) for url in urls
+            ]
             for future in concurrent.futures.as_completed(futures):
                 size = future.result()
                 downloaded_size += size
 
+
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 def extract_raster(csv_file, raster_file, band_names):
     """
     Extract raster values corresponding to the coordinates specified in the CSV file.
     --------------------------------------------------------------------------------------------
 
-    This function reads the x and y coordinates from a CSV file and extracts the raster values 
+    This function reads the x and y coordinates from a CSV file and extracts the raster values
     corresponding to those coordinates. The extracted values are added to the CSV file as new columns.
 
     Required Parameters
@@ -901,8 +982,8 @@ def extract_raster(csv_file, raster_file, band_names):
     bands = np.zeros((df.shape[0], n_bands))
 
     for i in range(df.shape[0]):
-        px = int((df['x'][i] - gt[0]) / gt[1])
-        py = int((df['y'][i] - gt[3]) / gt[5])
+        px = int((df["x"][i] - gt[0]) / gt[1])
+        py = int((df["y"][i] - gt[3]) / gt[5])
 
         for j in range(n_bands):
             band = ds.GetRasterBand(j + 1)
@@ -915,9 +996,20 @@ def extract_raster(csv_file, raster_file, band_names):
 
     df.to_csv(csv_file, index=None)
 
+
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-def fetch_dem(bbox={"xmin": -84.0387, "ymin": 35.86, "xmax": -83.815, "ymax": 36.04}, dataset="National Elevation Dataset (NED) 1/3 arc-second Current", prod_format="GeoTIFF", download=False, txtPath="download_urls.txt", saveToTxt=True, downloadFolder='./', shapeFile = None):
+
+def fetch_dem(
+    bbox={"xmin": -84.0387, "ymin": 35.86, "xmax": -83.815, "ymax": 36.04},
+    dataset="National Elevation Dataset (NED) 1/3 arc-second Current",
+    prod_format="GeoTIFF",
+    download=False,
+    txtPath="download_urls.txt",
+    saveToTxt=True,
+    downloadFolder="./",
+    shapeFile=None,
+):
     """
     Queries the USGS API for DEM data given specified parameters and optionally extracts download URLs.
     ----------------------------------------------------------------------------------------------------
@@ -941,7 +1033,7 @@ def fetch_dem(bbox={"xmin": -84.0387, "ymin": 35.86, "xmax": -83.815, "ymax": 36
     downloadFolder : str
         Destination folder for downloads (used if `download` is True). Default is the current directory.
     shapeFile : str
-        Path to a shapefile with which a bounding box will be generated. Overrides the 'bbox' parameter if set. 
+        Path to a shapefile with which a bounding box will be generated. Overrides the 'bbox' parameter if set.
 
     Outputs
     -------
@@ -955,18 +1047,18 @@ def fetch_dem(bbox={"xmin": -84.0387, "ymin": 35.86, "xmax": -83.815, "ymax": 36
     """
     if shapeFile is not None:
         coords = get_extent(shapeFile)
-        bbox['xmin'] = coords[0][0]
-        bbox['ymax'] = coords[0][1]
-        bbox['xmax'] = coords[1][0]
-        bbox['ymin'] = coords[1][1]
-    
+        bbox["xmin"] = coords[0][0]
+        bbox["ymax"] = coords[0][1]
+        bbox["xmax"] = coords[1][0]
+        bbox["ymin"] = coords[1][1]
+
     base_url = "https://tnmaccess.nationalmap.gov/api/v1/products"
 
     # Construct the query parameters
     params = {
         "bbox": f"{bbox['xmin']},{bbox['ymin']},{bbox['xmax']},{bbox['ymax']}",
         "datasets": dataset,
-        "prodFormats": prod_format
+        "prodFormats": prod_format,
     }
 
     # Make a GET request
@@ -974,14 +1066,13 @@ def fetch_dem(bbox={"xmin": -84.0387, "ymin": 35.86, "xmax": -83.815, "ymax": 36
 
     # Check for a successful request
     if response.status_code != 200:
-        raise Exception(
-            f"Failed to fetch data. Status code: {response.status_code}")
+        raise Exception(f"Failed to fetch data. Status code: {response.status_code}")
 
     # Convert JSON response to Python dict
     data = response.json()
 
     # Extract download URLs
-    download_urls = [item['downloadURL'] for item in data['items']]
+    download_urls = [item["downloadURL"] for item in data["items"]]
 
     if saveToTxt is True:
         with open(txtPath, "w") as file:
@@ -994,24 +1085,41 @@ def fetch_dem(bbox={"xmin": -84.0387, "ymin": 35.86, "xmax": -83.815, "ymax": 36
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-def generate_img(tif, cmap='inferno', dpi=150, downsample=1, verbose=False, clean=False, title=None, 
-                 nancolor='green', ztype="Z", zunit=None, xyunit=None, reproject_gcs=False, 
-                 shp_files =None, crop_shp=False, bordercolor="black", borderlinewidth=1.5, saveDir = None):
+
+def generate_img(
+    tif,
+    cmap="inferno",
+    dpi=150,
+    downsample=1,
+    verbose=False,
+    clean=False,
+    title=None,
+    nancolor="green",
+    ztype="Z",
+    zunit=None,
+    xyunit=None,
+    reproject_gcs=False,
+    shp_files=None,
+    crop_shp=False,
+    bordercolor="black",
+    borderlinewidth=1.5,
+    saveDir=None,
+):
     """
     Plot a GeoTIFF image using matplotlib.
     --------------------------------------
 
-    This function is a powerful plotting tool for GEOTiff files that uses GDAL, OSR, numpy, matplotlib, and geopandas. 
+    This function is a powerful plotting tool for GEOTiff files that uses GDAL, OSR, numpy, matplotlib, and geopandas.
     We have tried to create a simple interface for the end user where you can input a tif file and an informational image will be generated.
-    If the default image is not suited for your needs or if any of the information is incorrect, there are a series of keyword arguments that allow for user customizability. 
+    If the default image is not suited for your needs or if any of the information is incorrect, there are a series of keyword arguments that allow for user customizability.
 
     Several major features that are not enabled by default include:
 
     - Automatic PCS to GCS conversion using the ``reproject_gcs`` flag.
     - Automated cropping with a shapefile using the ``shp_file`` parameter in addition to the ``crop_shp``.
-    - Downsampling in order to reduce computation time using the ``downsample`` flag. 
+    - Downsampling in order to reduce computation time using the ``downsample`` flag.
     - A verbose mode that will print additional spatial information about the geotiff file using the ``verbose`` flag.
-    - A clean mode that will print an image of the geotiff with no other information using the ``clean`` flag. 
+    - A clean mode that will print an image of the geotiff with no other information using the ``clean`` flag.
 
     Required Parameters
     --------------------
@@ -1054,19 +1162,19 @@ def generate_img(tif, cmap='inferno', dpi=150, downsample=1, verbose=False, clea
     Returns
     -------
     raster_array: np.ndarray
-        Returns the raster array that was used for visualization. 
+        Returns the raster array that was used for visualization.
 
     Notes
     -----
     - Alternative colormaps can be found in the `matplotlib documentation <https://matplotlib.org/stable/users/explain/colors/colormaps.html>`_.
     - Shapemap cannot be in a .zip form. GDAL will throw an error if you use a .zip. We recommend using .shp. It can also cause issues if you don't have the accompanying files with the .shp file. (.dbf, .prj, .shx).
-    - Must be used with Jupyter Notebooks to display results properly. Will Implement a feature to save output to dir eventually. 
-    - Using ``shp_file`` without setting ``crop_shp`` will allow you to plot the outline of the shapefile without actually cropping anything. 
+    - Must be used with Jupyter Notebooks to display results properly. Will Implement a feature to save output to dir eventually.
+    - Using ``shp_file`` without setting ``crop_shp`` will allow you to plot the outline of the shapefile without actually cropping anything.
     """
 
     # Initial setup
     tif_dir_changed = False
-    
+
     # Reproject raster into geographic coordinate system if needed
     if reproject_gcs:
         print("Reprojecting..")
@@ -1076,7 +1184,7 @@ def generate_img(tif, cmap='inferno', dpi=150, downsample=1, verbose=False, clea
         if crop_shp is False:
             new_path_crop = os.path.join(base_dir, "vis_trim_crop.tif")
             print("Cropping NaN values...")
-            crop_to_valid_data(new_path,new_path_crop)
+            crop_to_valid_data(new_path, new_path_crop)
             print("Done.")
             os.remove(new_path)
             tif = new_path_crop
@@ -1095,13 +1203,13 @@ def generate_img(tif, cmap='inferno', dpi=150, downsample=1, verbose=False, clea
             combined_geom = gdfs[0].unary_union
             for gdf in gdfs[1:]:
                 combined_geom = combined_geom.union(gdf.unary_union)
-            
+
             combined_gdf = gpd.GeoDataFrame(geometry=[combined_geom], crs=gdfs[0].crs)
-                
+
             # Save the combined shapefile temporarily for cropping
             temp_combined_shp = os.path.join(os.path.dirname(tif), "temp_combined.shp")
             combined_gdf.to_file(temp_combined_shp)
-                
+
             print("Cropping with combined shapefiles...")
             base_dir = os.path.dirname(tif)
             new_path = os.path.join(base_dir, "crop.tif")
@@ -1111,7 +1219,7 @@ def generate_img(tif, cmap='inferno', dpi=150, downsample=1, verbose=False, clea
             tif = new_path
             tif_dir_changed = True
             print("Done.")
-            
+
             # Remove the temporary combined shapefile
             os.remove(temp_combined_shp)
 
@@ -1123,22 +1231,29 @@ def generate_img(tif, cmap='inferno', dpi=150, downsample=1, verbose=False, clea
     spatial_ref = osr.SpatialReference(wkt=dataset.GetProjection())
 
     # Extract spatial information about raster
-    proj_name = spatial_ref.GetAttrValue('PROJECTION')
+    proj_name = spatial_ref.GetAttrValue("PROJECTION")
     proj_name = proj_name if proj_name else "GCS, No Projection"
     data_unit = zunit or spatial_ref.GetLinearUnitsName()
     coord_unit = xyunit or spatial_ref.GetAngularUnitsName()
-    z_type = ztype if band.GetDescription() == '' else band.GetDescription()
-
+    z_type = ztype if band.GetDescription() == "" else band.GetDescription()
 
     if verbose:
-        print(f"Geotransform:\n{geotransform}\n\nSpatial Reference:\n{spatial_ref}\n\nDocumentation on spatial reference format: https://docs.ogc.org/is/18-010r11/18-010r11.pdf\n")
+        print(
+            f"Geotransform:\n{geotransform}\n\nSpatial Reference:\n{spatial_ref}\n\nDocumentation on spatial reference format: https://docs.ogc.org/is/18-010r11/18-010r11.pdf\n"
+        )
 
-    raster_array = gdal.Warp('', tif, format='MEM', 
-                             width=int(dataset.RasterXSize/downsample), 
-                             height=int(dataset.RasterYSize/downsample)).ReadAsArray()
+    raster_array = gdal.Warp(
+        "",
+        tif,
+        format="MEM",
+        width=int(dataset.RasterXSize / downsample),
+        height=int(dataset.RasterYSize / downsample),
+    ).ReadAsArray()
 
     # Mask nodata values
-    raster_array = np.ma.array(raster_array, mask=np.equal(raster_array, band.GetNoDataValue()))
+    raster_array = np.ma.array(
+        raster_array, mask=np.equal(raster_array, band.GetNoDataValue())
+    )
 
     print("Done.\nPlotting data...")
 
@@ -1153,44 +1268,74 @@ def generate_img(tif, cmap='inferno', dpi=150, downsample=1, verbose=False, clea
 
     # Plot
     fig, ax = plt.subplots(dpi=dpi)
-    sm = ax.imshow(raster_array, cmap=cmap_instance, vmin=np.nanmin(raster_array), vmax=np.nanmax(raster_array), 
-                   extent=[ulx, lrx, lry, uly])
+    sm = ax.imshow(
+        raster_array,
+        cmap=cmap_instance,
+        vmin=np.nanmin(raster_array),
+        vmax=np.nanmax(raster_array),
+        extent=[ulx, lrx, lry, uly],
+    )
     if clean:
-        ax.axis('off')
+        ax.axis("off")
     else:
         # Adjust colorbar and title
-        cbar = fig.colorbar(sm, fraction=0.046*raster_array.shape[0]/raster_array.shape[1], pad=0.04)
+        cbar = fig.colorbar(
+            sm, fraction=0.046 * raster_array.shape[0] / raster_array.shape[1], pad=0.04
+        )
         cbar_ticks = np.linspace(np.nanmin(raster_array), np.nanmax(raster_array), 8)
         cbar.set_ticks(cbar_ticks)
         cbar.set_label(f"{z_type} ({data_unit}s)")
 
-        ax.set_title(title if title else f"Visualization of GEOTiff data using {proj_name}.", fontweight='bold')
-        ax.tick_params(axis='both', which='both', bottom=True, top=False, left=True, right=False, color='black', length=5, width=1)
+        ax.set_title(
+            title if title else f"Visualization of GEOTiff data using {proj_name}.",
+            fontweight="bold",
+        )
+        ax.tick_params(
+            axis="both",
+            which="both",
+            bottom=True,
+            top=False,
+            left=True,
+            right=False,
+            color="black",
+            length=5,
+            width=1,
+        )
 
-        ax.set_title(title or f"Visualization of GEOTiff data using {proj_name}.", fontweight='bold')
+        ax.set_title(
+            title or f"Visualization of GEOTiff data using {proj_name}.",
+            fontweight="bold",
+        )
 
     # Set up the ticks for x and y axis
     x_ticks = np.linspace(ulx, lrx, 5)
     y_ticks = np.linspace(lry, uly, 5)
 
     # Format the tick labels to two decimal places
-    x_tick_labels = [f'{tick:.2f}' for tick in x_ticks]
-    y_tick_labels = [f'{tick:.2f}' for tick in y_ticks]
+    x_tick_labels = [f"{tick:.2f}" for tick in x_ticks]
+    y_tick_labels = [f"{tick:.2f}" for tick in y_ticks]
 
     ax.set_xticks(x_ticks)
     ax.set_yticks(y_ticks)
     ax.set_xticklabels(x_tick_labels)
     ax.set_yticklabels(y_tick_labels)
 
-
     # Determine x and y labels based on whether data is lat-long or projected
-    y_label = f"Latitude ({coord_unit}s)" if spatial_ref.EPSGTreatsAsLatLong() else f"Northing ({coord_unit}s)"
-    x_label = f"Longitude ({coord_unit}s)" if spatial_ref.EPSGTreatsAsLatLong() else f"Easting ({coord_unit}s)"
+    y_label = (
+        f"Latitude ({coord_unit}s)"
+        if spatial_ref.EPSGTreatsAsLatLong()
+        else f"Northing ({coord_unit}s)"
+    )
+    x_label = (
+        f"Longitude ({coord_unit}s)"
+        if spatial_ref.EPSGTreatsAsLatLong()
+        else f"Easting ({coord_unit}s)"
+    )
     ax.set_ylabel(y_label)
     ax.set_xlabel(x_label)
 
     # ax.ticklabel_format(style='plain', axis='both')  # Prevent scientific notation on tick labels
-    ax.set_aspect('equal')
+    ax.set_aspect("equal")
 
     if shp_files:
         for shp_file in shp_files:
@@ -1207,14 +1352,16 @@ def generate_img(tif, cmap='inferno', dpi=150, downsample=1, verbose=False, clea
 
     return raster_array
 
+
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 def get_extent(shp_file):
     """
     Get the bounding box (extent) of a shapefile.
     ----------------------------------------------
 
-    This function extracts the extent or bounding box of a shapefile. The extent is returned as 
+    This function extracts the extent or bounding box of a shapefile. The extent is returned as
     the upper left and lower right coordinates.
 
     Required Parameters
@@ -1225,7 +1372,7 @@ def get_extent(shp_file):
     Outputs
     -------
     tuple of tuple
-        Returns two tuples, the first representing the upper left (x, y) coordinate and the second 
+        Returns two tuples, the first representing the upper left (x, y) coordinate and the second
         representing the lower right (x, y) coordinate.
 
     Notes
@@ -1242,17 +1389,18 @@ def get_extent(shp_file):
     upper_left = (ext[0], ext[3])
     lower_right = (ext[1], ext[2])
 
-    return upper_left, lower_right  
+    return upper_left, lower_right
 
-    
+
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 def get_file_size(url):
     """
     Retrieve the size of a file at a given URL in bytes.
     ----------------------------------------------------
 
-    This function sends a HEAD request to the provided URL and reads the 'Content-Length' header to determine the size of the file. 
+    This function sends a HEAD request to the provided URL and reads the 'Content-Length' header to determine the size of the file.
     It's primarily designed to support the `download_files` function to calculate download sizes beforehand.
 
     Required Parameters
@@ -1269,13 +1417,14 @@ def get_file_size(url):
     -----
     - This function relies on the server's response headers to determine the file size.
     - If the server doesn't provide a 'Content-Length' header or there's an error in the request, the function will return 0.
-    - This function's primary use is with `download_files()`. 
+    - This function's primary use is with `download_files()`.
     """
     try:
         response = requests.head(url)
-        return int(response.headers.get('Content-Length', 0))
+        return int(response.headers.get("Content-Length", 0))
     except:
         return 0
+
 
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1307,14 +1456,25 @@ def reproject(input_file, output_file, projection):
     - The source raster data remains unchanged; only a new reprojected output file is generated.
     """
     # Projection can be EPSG:4326, .... or the path to a wkt file
-    warp_options = gdal.WarpOptions(dstSRS=projection, creationOptions=['COMPRESS=LZW', 'TILED=YES', 'BIGTIFF=YES', 'NUM_THREADS=ALL_CPUS'],
-                                    multithread=True, warpOptions=['NUM_THREADS=ALL_CPUS'])#,callback=gdal.TermProgress_nocb)
+    warp_options = gdal.WarpOptions(
+        dstSRS=projection,
+        creationOptions=[
+            "COMPRESS=LZW",
+            "TILED=YES",
+            "BIGTIFF=YES",
+            "NUM_THREADS=ALL_CPUS",
+        ],
+        multithread=True,
+        warpOptions=["NUM_THREADS=ALL_CPUS"],
+    )  # ,callback=gdal.TermProgress_nocb)
     warp = gdal.Warp(output_file, input_file, options=warp_options)
     warp = None  # Closes the files
 
+
 # ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-def tif2csv(raster_file, band_names=['elevation'], output_file='params.csv'):
+
+def tif2csv(raster_file, band_names=["elevation"], output_file="params.csv"):
     """
     Convert raster values from a TIF file into CSV format.
     ------------------------------------------------------
@@ -1331,7 +1491,7 @@ def tif2csv(raster_file, band_names=['elevation'], output_file='params.csv'):
     Optional Parameters
     -------------------
     band_names : list
-        Names for each band in the raster. The order should correspond to the bands in the raster file. 
+        Names for each band in the raster. The order should correspond to the bands in the raster file.
         Default is ['elevation'].
     output_file : str
         Path where the resultant CSV file will be saved. Default is 'params.csv'.
@@ -1339,7 +1499,7 @@ def tif2csv(raster_file, band_names=['elevation'], output_file='params.csv'):
     Outputs
     -------
     None
-        The function will generate a CSV file saved at the specified `output_file` path, containing the raster values 
+        The function will generate a CSV file saved at the specified `output_file` path, containing the raster values
         and their corresponding x and y coordinates.
 
     Notes
@@ -1350,7 +1510,7 @@ def tif2csv(raster_file, band_names=['elevation'], output_file='params.csv'):
     Error States
     ------------
     - If the provided raster file is not present, invalid, or cannot be read, GDAL may raise an error.
-    - If the number of provided `band_names` does not match the number of bands in the raster, the resulting CSV 
+    - If the number of provided `band_names` does not match the number of bands in the raster, the resulting CSV
       might contain columns without headers or may be missing some data.
     """
     ds = gdal.Open(raster_file, 0)
@@ -1372,9 +1532,9 @@ def tif2csv(raster_file, band_names=['elevation'], output_file='params.csv'):
         data = band.ReadAsArray()
         data = np.ma.array(data, mask=np.equal(data, band.GetNoDataValue()))
         data = data.filled(np.nan)
-        bands[:, k-1] = data.flatten()
+        bands[:, k - 1] = data.flatten()
 
-    column_names = ['x', 'y'] + band_names
+    column_names = ["x", "y"] + band_names
     stack = np.column_stack((x, y, bands))
     df = pd.DataFrame(stack, columns=column_names)
     df.dropna(inplace=True)
