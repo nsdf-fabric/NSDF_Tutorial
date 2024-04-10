@@ -32,7 +32,7 @@ RUN apt-get update \
 WORKDIR /app
 
 RUN conda env create -f environment.yml
-SHELL ["conda", "run", "-n", "somospie", "/bin/bash", "-c"]
+SHELL ["conda", "run", "-n", "NSDF-Tutorial", "/bin/bash", "-c"]
 
 RUN pip install openvisus
 
@@ -55,4 +55,4 @@ WORKDIR /app
 EXPOSE 8989 5000
 
 RUN conda init
-CMD ["conda", "run","-n", "somospie","jupyter", "lab", "--port=5000", "--no-browser", "--ip=0.0.0.0", "--allow-root", "--NotebookApp.token=''","--NotebookApp.password=''"]
+CMD ["conda", "run","-n", "NSDF-Tutorial","jupyter", "lab", "--port=5000", "--no-browser", "--ip=0.0.0.0", "--allow-root", "--NotebookApp.token=''","--NotebookApp.password=''"]

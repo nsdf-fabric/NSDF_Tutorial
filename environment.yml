@@ -1,4 +1,4 @@
-name: somospie
+name: NSDF-Tutorial
 channels:
   - conda-forge
   - defaults

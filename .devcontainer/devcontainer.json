@@ -2,7 +2,7 @@
   "name": "NSDF Tutorial",
   "image": "globalcomputinglab/somospie_openvisus:tutorial",
   "containerEnv": {
-    "PROJ_LIB": "/opt/conda/envs/somospie/share/proj"
+    "PROJ_LIB": "/opt/conda/envs/NSDF-Tutorial/share/proj"
   },
   "customizations": {
     "vscode": {
@@ -16,11 +16,10 @@
       "settings": {
         "C_Cpp.default.cppStandard": "c++17",
         "C_Cpp.default.cStandard": "c99",
-        "python.defaultInterpreterPath": "/opt/conda/envs/somospie/bin/python",
+        "python.defaultInterpreterPath": "/opt/conda/envs/NSDF-Tutorial/bin/python",
         "python.languageServer": "Default",
         "terminal.integrated.shell.linux": "/bin/bash"
       }
     }
   }
-  
 }
