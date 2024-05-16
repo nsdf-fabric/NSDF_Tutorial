@@ -55,9 +55,7 @@ The slides introducing this tutorial can be downloaded [here](https://zenodo.org
 
 ## Prerequisites
 
-> :bulb: **Note:** These prerequisites are required to run the section 3 [Running the Tutorial with Docker](#running-the-tutorial-with-docker)
-
-> :bulb: **Note:** To follow this tutorial you must have a computer with minimum **8 GB of RAM** and **5 GB of free disk**
+> :bulb: **Note:** These prerequisites are required to run the section 3 [Running the Tutorial with Docker](#running-the-tutorial-with-docker) if your not using docker please skip this section and continue with the section 2 [Running the Tutorial with GitHub Codespaces](#running-the-tutorial-with-github-codespaces)
 
 Before starting this tutorial, ensure you have installed Git and Docker Desktop on your computer.
 
@@ -110,7 +108,9 @@ Server:
 
 > :bulb: **Note:** To follow this tutorial using the GitHub Codespaces you must have a GitHub Account
 
-Use your GitHub account to run this tutorial with GitHub codespaces
+Use your GitHub account to run this tutorial with GitHub Codespaces
+
+Please click the next button to open in GitHub Codespaces
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/nsdf-fabric/NSDF_Tutorial)
 
@@ -142,6 +142,8 @@ After creating the codespace, execute the tutorial notebook (Tutorial.ipynb)
 
 ## Running the Tutorial with Docker
 
+> :bulb: **Note:** To follow this tutorial you must have a computer with minimum **8 GB of RAM** and **5 GB of free disk**
+> 
 To run this tutorial, we have prepared a Docker container named [`globalcomputinglab/somospie_openvisus`](https://hub.docker.com/repository/docker/globalcomputinglab/somospie_openvisus/general) that includes all necessary software. Ensure you have installed Docker Desktop as outlined in the [Prerequisites](#prerequisites).
 
 **:bulb: Note: Before following the next steps, make sure to open the Docker Desktop Application.**
