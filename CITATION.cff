@@ -29,7 +29,7 @@ authors:
     given-names: Michela
     orcid: https://orcid.org/0000-0002-0031-6377
 title: "Tutorial: Using NSDF for End-to-End Analysis of Scientific Data"
-version: 2.0.4
+version: 1.0.0
 identifiers:
   - type: doi
     value: 10.5281/ZENODO.10794642
