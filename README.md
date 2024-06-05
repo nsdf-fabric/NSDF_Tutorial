@@ -34,7 +34,7 @@ Throughout the tutorial, you will learn how to:
 The slides introducing this tutorial can be downloaded [here](https://zenodo.org/records/10794642). This tutorial follows the steps in Figure 1.
 
 <p align="center">
-    <img src="files/docs/workflow-diagram.png" width="800">
+    <img src="files/docs/arq.png" width="800">
     <br>
     <em>Figure 1. Workflow diagram illustrating the tutorial's process of data collection, transformation, analysis, and storage using the SOMOSPIE engine and NSDF services.</em>
 </p>
@@ -143,8 +143,8 @@ After creating the codespace, execute the tutorial notebook (Tutorial.ipynb)
 ## Running the Tutorial with Docker
 
 > :bulb: **Note:** To follow this tutorial you must have a computer with minimum **8 GB of RAM** and **5 GB of free disk**
-> 
-To run this tutorial, we have prepared a Docker container named [`globalcomputinglab/somospie_openvisus`](https://hub.docker.com/repository/docker/globalcomputinglab/somospie_openvisus/general) that includes all necessary software. Ensure you have installed Docker Desktop as outlined in the [Prerequisites](#prerequisites).
+>
+> To run this tutorial, we have prepared a Docker container named [`globalcomputinglab/somospie_openvisus`](https://hub.docker.com/repository/docker/globalcomputinglab/somospie_openvisus/general) that includes all necessary software. Ensure you have installed Docker Desktop as outlined in the [Prerequisites](#prerequisites).
 
 **:bulb: Note: Before following the next steps, make sure to open the Docker Desktop Application.**
 
