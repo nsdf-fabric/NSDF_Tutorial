@@ -71,12 +71,12 @@ You can choose one of the two options below based on your preferred setup.
 ## Option 1: GitHub Codespaces (Recommended)
   <p><strong>Requirements:</strong> A GitHub account. No software installation required.</p>
   <p>
-    <a href="https://github.com/codespaces/new/TauferLab/nsdf-tutorial?devcontainer_path=.devcontainer/session+II/devcontainer.json">
+    <a href="https://github.com/codespaces/new/nsdf-fabric/NSDF_Tutorial?devcontainer_path=.devcontainer/session+II/devcontainer.json">
       <img src="https://github.com/codespaces/badge.svg" alt="Open in GitHub Codespaces"> 
     </a> <= Click here to take you to create a new codespace
   </p>
   <ol>
-    <li>Repository: <code>TauferLab/NSDF-Tutorial-2025</code>.</li>
+    <li>Repository: <code>nsdf-fabric/NSDF_Tutorial-2025</code>.</li>
     <li>Use the <strong>main</strong> branch of the repository.</li>
     <li>Dev container: <code>NSDF Tutorial – Session II</code>.</li>
     <li>Click <strong>Create Codespace</strong>.</li>
@@ -109,7 +109,7 @@ You can choose one of the two options below based on your preferred setup.
     </li>
     <li>Open Docker Desktop before continuing.</li>
     <li>Open terminal and run:
-      <pre><code>git clone https://github.com/TauferLab/NSDF-Tutorial-2025.git
+      <pre><code>git clone https://github.com/nsdf-fabric/NSDF_Tutorial-2025.git
 cd NSDF-Tutorial-2025/session\ II/Materials/
 docker-compose up -d</code></pre>
     </li>
@@ -136,7 +136,7 @@ docker-compose up -d</code></pre>
 
 <li>
   Clone the tutorial repository:
-  <pre><code>git clone https://github.com/TauferLab/NSDF-Tutorial-2025.git</code></pre>
+  <pre><code>git clone https://github.com/nsdf-fabric/NSDF_Tutorial-2025.git</code></pre>
 </li>
 
   <li>
@@ -421,11 +421,11 @@ Use your GitHub account to run this tutorial with GitHub Codespaces
 
 Please click the next button to open in GitHub Codespaces
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/TauferLab/NSDF-Tutorial-2025?devcontainer_path=.devcontainer/session+II/devcontainer.json)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/nsdf-fabric/NSDF_Tutorial-2025?devcontainer_path=.devcontainer/session+II/devcontainer.json)
 
 Now follow these steps to set up your virtual environment using GitHub codespaces:
 
-Verify that you are using the `main` branch, the repository name `TauferLab/NSDF-Tutorial-2025` and the dev container configuration `NSDF Tutorial - Session II`. Then click on `Create Codespace`
+Verify that you are using the `main` branch, the repository name `nsdf-fabric/NSDF_Tutorial-2025` and the dev container configuration `NSDF Tutorial - Session II`. Then click on `Create Codespace`
 
 <p align="center">
     <img src="Materials/files/docs/codespaces.png" width="800">

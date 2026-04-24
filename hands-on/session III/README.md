@@ -59,11 +59,11 @@ Use your GitHub account to run this tutorial with GitHub Codespaces
 
 Please click the next button to open in GitHub Codespaces
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/TauferLab/NSDF-tutorial?devcontainer_path=.devcontainer/session+II/devcontainer.json)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/nsdf-fabric/NSDF_Tutorial?devcontainer_path=.devcontainer/session+II/devcontainer.json)
 
 Now follow these steps to set up your virtual environment using GitHub codespaces:
 
-Verify that you are using the `main` branch, the repository name `TauferLab/NSDF-Tutorial-2025` and the dev container configuration `NSDF Tutorial - Session III`. Then click on `Create Codespace`
+Verify that you are using the `main` branch, the repository name `nsdf-fabric/NSDF_Tutorial-2025` and the dev container configuration `NSDF Tutorial - Session III`. Then click on `Create Codespace`
 
 <p align="center">
     <img src="files/docs/codespaces.png" width="800">
